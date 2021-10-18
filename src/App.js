@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Slider from './components/UserProfile/Slider';
 // import App_user from './components/UserProfile/Profile_user';
 import HomePage from './components/HomePage';
+import Shop from'./components/Shop.js';
 function App() {
   const adminUser = {
     username: "admin",
@@ -61,10 +62,11 @@ function App() {
       )} */}
       {/* <SignUp /> */}
       {/* <App_user /> */}
-      <Router>
+      {/* <Router>
       <Navbar />
-      </Router>
+      </Router> */}
       {/* <HomePage /> */}
+      <Shop />
     </div>
     </>
   
