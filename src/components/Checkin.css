@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+  }
+.Checkinborder{
+    background-color:rgb(245, 247, 236);
+    margin-left: 20px;
+    margin-top: 20px;   
+    height: 340px;
+    width: 880px;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+.Checkinpadding{
+    background-color: rgba(197, 178, 6, 0.822);
+    height: 350px;
+    width: 800px;
+    border-radius: 20px;
+    margin-left: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+.Checkinbox {
+    background-color: rgba(247, 231, 178, 0.884);
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    float: left;
+    margin-left: 40px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    color:rgb(189, 129, 0);
+}
+
+img {
+    width: 75px;
+    height: 70px;
+    display: block;
+    margin: auto;
+}
+.exitimg{
+    width: 50px;
+    height: 40px;
+}
+
+.Checkinbox:hover {
+    transform: scale(1.5);
+}
+.Checkinexit{
+    width: 976px;
+    position: relative;
+    bottom: 25px;      
+}
