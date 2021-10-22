@@ -2,12 +2,12 @@
     box-sizing: border-box;
   }
 .Checkinborder{
-    background-color:rgb(245, 247, 236);
+    background-color:rgb(245, 241, 217);
     margin-left: 20px;
-    margin-top: 20px;   
-    height: 340px;
-    width: 880px;
-    padding-top: 20px;
+    margin-top: 10px;   
+    height: 380px;
+    width: 850px;
+    padding-top: 15px;
     border-radius: 20px;
 }
 
@@ -16,7 +16,7 @@
     height: 350px;
     width: 800px;
     border-radius: 20px;
-    margin-left: 50px;
+    margin-left: 23px;
     padding: 10px;
     box-sizing: border-box;
 
