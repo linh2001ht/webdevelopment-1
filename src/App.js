@@ -18,7 +18,7 @@ import { ProvideAuth, UserContext, useAuth }  from './components/Authentication/
 import { Nav } from 'react-bootstrap';
 import Ranking from './components/pages/Rank';
 import Shop from'./components/Shop';
-
+import Game from './components/Game';
 
 function App() {
 
@@ -29,10 +29,6 @@ function App() {
   }
   
 
-  // const [ user, setUser ] = useState({
-  //   username: "",
-  //   password: ""
-  // })
   const [ username, setUsername ] = useState("usern")
   const [ password, setPassword ] = useState("pwd")
   
@@ -78,6 +74,7 @@ function App() {
               <Route exact path="/userprofile" component={Profile_user_final} />
               <Route exact path="/shop" component={Shop} /> 
               <Route exact path="/rank" component={Ranking} />
+              <Route exact path="/play" component={Game} />
             </UserContext.Provider>
           </Switch>
       </Router>

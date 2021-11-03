@@ -1,0 +1,109 @@
+.game {
+    font-size: xx-large;
+    text-align: right;
+    margin: auto;
+    width: 1200px;
+    height: 600px;
+    background-color: skyblue;
+    border: 1px black solid;
+    overflow: hidden;
+  }
+  
+  #character {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: -12px;
+    background: url("../assets/images/walking_new1.png");
+    animation: walk-east 2.5s steps(8) infinite;
+  
+    left: 100px;
+  }
+  @keyframes walk-east {
+    from {
+      background-position: 0px;
+    }
+    to {
+      background-position: -960px;
+    }
+  }
+  
+  .item {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    top: 110px;
+  }
+  
+  .stone {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/images/stone.png");
+    background-size: 100px 100px;
+    top: 285px;
+  }
+  
+  .platform {
+    position: relative;
+    width: 1200px;
+    height: 110px;
+    background-image: url("../assets/images/platform.png");
+    background-size: 1500px 150px;
+    top: 380px;
+  }
+  
+  .sun {
+    position: relative;
+    opacity: 0.8;
+    width: 100px;
+    height: 100px;
+    background-image: url("../assets/images/sun.png");
+    background-size: 100px 100px;
+    top: -220px;
+    left: 800px;
+  }
+  
+  .cloud {
+    position: relative;
+    opacity: 0.5;
+    width: 200px;
+    height: 60px;
+    background-image: url("../assets/images/cloud.png");
+    background-size: 200px 60px;
+  }
+  
+  .sword {
+    position: absolute;
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/sword.png");
+    background-size: 50px 50px;
+  }
+  .shuriken {
+    position: absolute;
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/shuriken.png");
+    background-size: 50px 50px;
+  }
+  .boom {
+    position: absolute;
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/boom.png");
+    background-size: 50px 50px;
+  }
+  .portal {
+    position: absolute;
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/portal.png");
+    background-size: 50px 50px;
+  }
+  

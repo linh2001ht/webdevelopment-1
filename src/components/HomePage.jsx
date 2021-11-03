@@ -53,10 +53,11 @@ function HomePage() {
             </div>
             <div className="play-background">
                 <button className="button-container">
-                    <label className="play-text">PLAY</label>
+                    {/* <label className="play-text">PLAY</label> */}
+                    <Link to="/play" className="play-text">PLAY</Link>
                 </button>
             </div>
-        </div>
+        </div> 
     )
     
 }
