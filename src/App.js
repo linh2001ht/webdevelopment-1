@@ -23,34 +23,45 @@ import Game from './components/Game';
 function App() {
 
   const auth = useAuth();
-  const fictionUser = {
+  const fictionUser = [{
     username: "user01",
     password: "user123",
+    role: 0
+  },
+  {
+    username: "admin01",
+    password: "admin123",
+    role: 1
   }
-  
-
-  const [ username, setUsername ] = useState("usern")
-  const [ password, setPassword ] = useState("pwd")
-  
-  const value = useMemo(() => ({ username, setUsername, password, setPassword }), [ username, setUsername, password, setPassword ]);
+]
+  const [ username, setUsername ] = useState("")
+  const [ password, setPassword ] = useState("")
+  const [ role, setRole ] = useState(1)
+  const value = useMemo(() => ({ username, setUsername, password, setPassword, role, setRole }), [ username, setUsername, password, setPassword, role, setRole ]);
 
   const [error, setError] = useState("")
-  const Login = details => {
+  const Login = (details, account) => {
     console.log(details);
-    if(details.username === fictionUser.username && details.password === fictionUser.password){
-      console.log("Logged in successfully!");
-      setUsername(details.username)
-      setPassword(details.password)
-      setError("");
-      return true;
-    }
-      
+    let isHas = false;
+    fictionUser.forEach(acc => {
+      if(details.username === acc.username && details.password === acc.password){
+        console.log("Logged in successfully!");
+        setRole(acc.role)
+        console.log("set role")
+        setUsername(details.username)
+        setPassword(details.password)
+        console.log("set acc")
+        setError("");
+        isHas = true;
+      }
+    })
+    if(isHas === true) return true;
     else {
       console.log("Details do not match!");
       setError("Details do not match!")
       return false;
+    }
   }
-}
   return (
     <ProvideAuth>
       <Router>
@@ -63,15 +74,15 @@ function App() {
               exact 
               path="/signin"
               render={ props => (
-               <SignIn {...props} defaultAccount={fictionUser} error={error} Login={Login} />
+               <SignIn {...props} defaultUser={fictionUser} error={error} Login={Login} />
              )} 
             />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/signup" component={SignUp} />
-            <UserContext.Provider value={{ username, password }}>
+            <UserContext.Provider value={{ username, password, role }}>
               <Route exact path="/homepage"  component={HomePage} />
               <Route exact path="/managerprofile" component={Appi} />
-              <Route exact path="/userprofile" component={Profile_user_final} />
+              {/* <Route exact path="/userprofile" component={Profile_user_final} /> */}
               <Route exact path="/shop" component={Shop} /> 
               <Route exact path="/rank" component={Ranking} />
               <Route exact path="/play" component={Game} />

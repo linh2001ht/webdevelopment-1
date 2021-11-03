@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useContext } from "react";
+import { UserContext } from "../Authentication/UserContext";
 import {
   AppBar,
   Avatar,
@@ -51,6 +53,7 @@ const DefaultRows = [
 ];
 
 export default function Ranking() {
+  const { username, password } = useContext(UserContext);
   const [rows, setRows] = React.useState(DefaultRows);
   const [searched, setSearched] = React.useState("");
   const [page, setPage] = React.useState(0);
@@ -102,7 +105,7 @@ export default function Ranking() {
             >
               <Avatar>A</Avatar>
               <Typography m color="white">
-                Admin01
+                {username}
               </Typography>
             </IconButton>
             <Menu

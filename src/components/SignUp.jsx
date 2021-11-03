@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function SignUp() {
+    const [ account, setAccount ] = useState({
+        email: "",
+        username: "",
+        gender: true,
+        age: "",
+        password: "",
+        confirm: ""
+    })
+
+    const handleSignUp = () => {
+        if(!account.email.includes("@") || !account.email.includes(".")) {
+            console.log("Invalid email!")
+        }
+        // if(username)  nếu username trùng với username có trong database -> console.log("username đã đc sd")
+        if(account.age !== parseInt(account.age, 10))
+        {
+            console.log("Tuoi khong hop le")
+        }
+        if(account.password !== account.confirm) {
+            console.log("hãy xác nhận mật khẩu đúng!")
+        }
+        // nếu 1 trong những cái trên sai -> reset lại tất cả 
+        // nếu đúng -> add vào database
+        // làm giúp t phần radio luôn nha, chọn male với female ấy
+    }
+
+    
     return (
         <div className="sign-up-container">
             <div>
@@ -9,11 +36,11 @@ function SignUp() {
             <div >
                 <div className="sign-up-input-container" >
                     <label className="sign-up-labels">Email address: (*)</label>
-                    <input className="sign-up-inputs" autoComplete="off" type="email" name="email" id="email" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="email" name="email" id="email" onChange= {e => setAccount({...account, email: e.target.value})} value={account.email}/><br />
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Username: (*)</label>
-                    <input className="sign-up-inputs" autoComplete="off" type="text" name="username" id="uname" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="text" name="username" onChange= {e => setAccount({...account, username: e.target.value})} value={account.username}/><br />
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Gender: </label>
@@ -22,19 +49,19 @@ function SignUp() {
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Age: </label>
-                    <input className="sign-up-inputs" autoComplete="off" type="text" name="age" id="age" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="text" name="age" id="age" onChange= {e => setAccount({...account, age: e.target.value})} value={account.age}/><br />
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Password: (*)</label>
-                    <input className="sign-up-inputs" autoComplete="off" type="password" name="password" id="pwd" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="password" name="password" id="pwd" onChange= {e => setAccount({...account, password: e.target.value})} value={account.password}/><br />
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Confirm password: (*)</label>
-                    <input className="sign-up-inputs" autoComplete="off" type="password" name="confirm-password" id="cf-pwd" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="password" name="confirm-password" id="cf-pwd" onChange= {e => setAccount({...account, confirm: e.target.value})} value={account.confirm}/><br />
                 </div>
             </div>
             <div className="sign-up-button-container">
-                <input className="sign-up-buttons" type="submit" value="Sign Up" />
+                <input className="sign-up-buttons" type="submit" onClick={handleSignUp} value="Sign Up" />
                 <button className="sign-up-buttons" onClick={() => {
                         window.open("/", "_self");
                         window.close();

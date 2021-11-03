@@ -4,6 +4,8 @@ import "./game.css";
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 
 export default function Game() {
+
+  
   const fps = 60;
   const [start, setStart] = useState(false);
   const [started, setStarted] = useState(false);
@@ -174,21 +176,30 @@ export default function Game() {
         >
           {zeroPad(portals, 2)}
         </span>
+        {/* High score */}
         <span
           style={{
             position: "relative",
-            right: 200
+            right: 400
           }}
         >
           H:{zeroPad(Math.floor(HScore), 5)}
         </span>
+        {/* Present score */}
         <span
           style={{
             position: "relative",
-            left: 0
+            right: 300
           }}
         >
           {zeroPad(Math.floor(score), 5)}{" "}
+        </span>
+        {/* Add exit button */}
+        <span className="exit-container">
+          <button className="exit-button" onClick={() => {
+                        window.open("/homepage", "_self");
+                        window.close();
+                }}>out!</button>
         </span>
       </div>
       <div
