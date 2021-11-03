@@ -17,6 +17,7 @@ import AboutUs from "./components/pages/AboutUs";
 import { ProvideAuth, UserContext, useAuth }  from './components/Authentication/UserContext';
 import { Nav } from 'react-bootstrap';
 // import Ranking from './components/pages/Rank';
+// import Shop from'./components/Shop.js';
 
 
 function App() {
