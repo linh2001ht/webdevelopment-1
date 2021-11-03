@@ -16,8 +16,8 @@ import Checkin from'./components/Checkin';
 import AboutUs from "./components/pages/AboutUs";
 import { ProvideAuth, UserContext, useAuth }  from './components/Authentication/UserContext';
 import { Nav } from 'react-bootstrap';
-// import Ranking from './components/pages/Rank';
-// import Shop from'./components/Shop.js';
+import Ranking from './components/pages/Rank';
+import Shop from'./components/Shop';
 
 
 function App() {
@@ -76,12 +76,13 @@ function App() {
               <Route exact path="/homepage"  component={HomePage} />
               <Route exact path="/managerprofile" component={Appi} />
               <Route exact path="/userprofile" component={Profile_user_final} />
-              {/* <Route exact path="/shop" component={Shop} /> */}
-              {/* <Route exact path="/rank" component={Ranking} /> */}
+              <Route exact path="/shop" component={Shop} /> 
+              <Route exact path="/rank" component={Ranking} />
             </UserContext.Provider>
           </Switch>
       </Router>
     </ProvideAuth>
+    
   );
 }
 

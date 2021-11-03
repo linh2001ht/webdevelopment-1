@@ -87,6 +87,10 @@ export default function Ranking() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar>
+          <a onClick={() => {
+                        window.open("/homepage", "_self");
+                        window.close();
+                }}><i class="fas fa-arrow-circle-left"></i></a>
             <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>
               Obstacle Crossed
             </Typography>

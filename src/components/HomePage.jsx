@@ -38,8 +38,8 @@ function HomePage() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">
-                        <NavLink className="navlink" href="#" onClick={() => console.log("to shop ")}>Shop</NavLink>
-                        <NavLink className="navlink" href="#" onClick={() => console.log("to rank ")}>Ranking</NavLink>
+                        <NavLink className="navlink" href="/shop" onClick={() => history.push("/shop")}>Shop</NavLink>
+                        <NavLink className="navlink" href="/rank" onClick={() => history.push("/rank")}>Ranking</NavLink>
                     </div>
                     <NavLink className="logout" href="/" onClick={() => history.push("/")}>Logout</NavLink>
                     </Navbar.Collapse>

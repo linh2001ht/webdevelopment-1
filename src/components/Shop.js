@@ -6,9 +6,14 @@ const Shop = () => {
 
     return(
         <div>
-                <div class="bar">
-                <div class="nar"></div>
-                <span class="titlegame">Obstacles Crossed</span>
+            <div class="bar">
+                <div class="nar">
+                <a onClick={() => {
+                        window.open("/homepage", "_self");
+                        window.close();
+                }}><i class="fas fa-arrow-circle-left"></i></a>
+                    <span class="titlegame">Obstacles Crossed</span>
+                </div>
             </div>
 
             <div class="character"></div>
