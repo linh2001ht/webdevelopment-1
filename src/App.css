@@ -82,6 +82,7 @@ body {
 
 .SubmitBtn {
     width: 80%;
+    height: 40px;
     margin: 1% 10%;
     background-color: #A2DBFA;
     border-radius: 5px;

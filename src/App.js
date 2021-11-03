@@ -36,25 +36,25 @@ function App() {
   const [ username, setUsername ] = useState("usern")
   const [ password, setPassword ] = useState("pwd")
   
-  const value = useMemo(() => ({ username, setUsername, password, setPassword }), [ username, setUsername, password, setPassword ]);
+  // const value = useMemo(() => ({ username, setUsername, password, setPassword }), [ username, setUsername, password, setPassword ]);
 
-  const [error, setError] = useState("")
-  const Login = details => {
-    console.log(details);
-    if(details.username === fictionUser.username && details.password === fictionUser.password){
-      console.log("Logged in successfully!");
-      setUsername(details.username)
-      setPassword(details.password)
-      setError("");
-      return true;
-    }
+  // const [error, setError] = useState("")
+//   const Login = details => {
+//     console.log(details);
+//     if(details.username === fictionUser.username && details.password === fictionUser.password){
+//       console.log("Logged in successfully!");
+//       setUsername(details.username)
+//       setPassword(details.password)
+//       setError("");
+//       return true;
+//     }
       
-    else {
-      console.log("Details do not match!");
-      setError("Details do not match!")
-      return false;
-  }
-}
+//     else {
+//       console.log("Details do not match!");
+//       setError("Details do not match!")
+//       return false;
+//   }
+// }
   return (
     <ProvideAuth>
       <Router>
@@ -63,13 +63,14 @@ function App() {
         </div> */}
           <Switch>
             <Route exact path="/" component={Navbar}/>
-            <Route
+            {/* <Route
               exact 
               path="/signin"
               render={ props => (
                <SignIn {...props} defaultAccount={fictionUser} error={error} Login={Login} />
              )} 
-            />
+            /> */}
+            <Route exact path="/signin" component={SignIn} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/signup" component={SignUp} />
             <UserContext.Provider value={{ username, password }}>
