@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./Shop.css";
 import LockImage from "../assets/images/Locker.png";
-
+import { UserContext } from "./Authentication/UserContext";
 const Shop = () => {
 
+    const { username, role } = useContext(UserContext)
     return(
         <div>
             <div class="bar">
                 <div class="nar">
                 <a onClick={() => {
-                        window.open("/homepage", "_self");
+                        role === "0" ? window.open("/homepage", "_self") : window.open("/homepagemanager", "_self")
                         window.close();
                 }}><i class="fas fa-arrow-circle-left"></i></a>
                     <span class="titlegame">Obstacles Crossed</span>

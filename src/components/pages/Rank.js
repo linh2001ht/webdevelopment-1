@@ -53,7 +53,7 @@ const DefaultRows = [
 ];
 
 export default function Ranking() {
-  const { username, password } = useContext(UserContext);
+  const { username, role } = useContext(UserContext)
   const [rows, setRows] = React.useState(DefaultRows);
   const [searched, setSearched] = React.useState("");
   const [page, setPage] = React.useState(0);
@@ -85,13 +85,15 @@ export default function Ranking() {
     setPage(0);
   };
 
+  
   return (
+
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar>
           <a onClick={() => {
-                        window.open("/homepage", "_self");
+                        role === "0" ? window.open("/homepage", "_self") : window.open("/homepagemanager", "_self")
                         window.close();
                 }}><i class="fas fa-arrow-circle-left"></i></a>
             <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>

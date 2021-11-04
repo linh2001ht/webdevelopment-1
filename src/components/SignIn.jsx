@@ -27,7 +27,7 @@ import { Redirect, useHistory } from 'react-router-dom'
 function SignIn( {Login, error }) {
 
     let history = useHistory()
-    const [details, setDetails] = useState({username: "", password: ""});
+    const [details, setDetails] = useState({username: "", password: "", role: ""});
     const [bgState, setBgState] = useState(false);
     const { Option } = Select;
       
@@ -47,7 +47,9 @@ function SignIn( {Login, error }) {
                 console.log(result);
                 if(Login(details)) {
                     // localStorage.setItem("accessToken", result.accessToken);
-                    history.push("/homepage");
+                   if(details.role === "0")
+                        history.push("/homepage");
+                    else history.push("/homepagemanager");
                 }
             })
         

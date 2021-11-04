@@ -19,6 +19,8 @@ import { Nav } from 'react-bootstrap';
 import Ranking from './components/pages/Rank';
 import Shop from'./components/Shop';
 import Game from './components/Game';
+import ManageUser from './components/ManageUser';
+import HomePageAdmin from './components/Homepage_Admin';
 
 function App() {
 
@@ -40,12 +42,13 @@ function App() {
   const value = useMemo(() => ({ username, setUsername, password, setPassword, role, setRole }), [ username, setUsername, password, setPassword, role, setRole ]);
 
   const [error, setError] = useState("")
-  const Login = (details, account) => {
+  const Login = details => {
     console.log(details);
     let isHas = false;
     fictionUser.forEach(acc => {
       if(details.username === acc.username && details.password === acc.password){
         console.log("Logged in successfully!");
+        details.role = acc.role.toString()
         setRole(acc.role)
         console.log("set role")
         setUsername(details.username)
@@ -58,7 +61,7 @@ function App() {
     if(isHas === true) return true;
     else {
       console.log("Details do not match!");
-      setError("Details do not match!")
+      setError("Details do not match!");
       return false;
     }
   }
@@ -68,6 +71,7 @@ function App() {
         {/* <div className="App">
           <Navbar />
         </div> */}
+
           <Switch>
             <Route exact path="/" component={Navbar}/>
             <Route
@@ -80,12 +84,14 @@ function App() {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/signup" component={SignUp} />
             <UserContext.Provider value={{ username, password, role }}>
-              <Route exact path="/homepage"  component={HomePage} />
+              <Route exact path="/homepage" component={HomePage} />
+              <Route exact path="/homepagemanager" component={HomePageAdmin} />
               <Route exact path="/managerprofile" component={Appi} />
-              {/* <Route exact path="/userprofile" component={Profile_user_final} /> */}
+              <Route exact path="/userprofile" component={Profile_user_final} />
               <Route exact path="/shop" component={Shop} /> 
               <Route exact path="/rank" component={Ranking} />
               <Route exact path="/play" component={Game} />
+              <Route exact path="/manageusers" component={ManageUser} />
             </UserContext.Provider>
           </Switch>
       </Router>

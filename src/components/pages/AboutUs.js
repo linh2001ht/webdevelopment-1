@@ -67,6 +67,8 @@ class AboutUs extends React.Component {
   };
 
   changeEditMode = (event) => {
+    // có thể bỏ cái switch admin với user đi -> nếu muốn chỉnh sửa -> đăng nhập -> if role là admin thì oke cho sửa 
+    
     this.setState({
       edit: !this.state.edit,
       currData: [...this.state.prevData]
