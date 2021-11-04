@@ -1,0 +1,184 @@
+.game {
+  font-size: xx-large;
+  text-align: right;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 600px;
+  background-color: skyblue;
+  border: 1px black solid;
+  overflow: hidden;
+}
+
+#character {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: url("../assets/images/walking_new1.png");
+  animation: walk-east 2.5s steps(8) infinite;
+  left: 100px;
+}
+@keyframes walk-east {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -960px;
+  }
+}
+
+.gift {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/gift.png");
+  background-size: 50px 50px;
+  top: 110px;
+}
+
+.stone {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/images/stone.png");
+  background-size: 100px 100px;
+  top: 285px;
+}
+
+.platform {
+  position: relative;
+  width: 1200px;
+  height: 110px;
+  background-image: url("../assets/images/platform.png");
+  background-size: 1500px 150px;
+  top: 380px;
+}
+
+.sun {
+  position: relative;
+  opacity: 0.8;
+  width: 100px;
+  height: 100px;
+  background-image: url("../assets/images/sun.png");
+  background-size: 100px 100px;
+  top: -220px;
+  left: 800px;
+}
+
+.cloud {
+  position: relative;
+  opacity: 0.5;
+  width: 200px;
+  height: 60px;
+  background-image: url("../assets/images/cloud.png");
+  background-size: 200px 60px;
+}
+
+.swords {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/swords.png");
+  background-size: 50px 50px;
+}
+.shurikens {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/shurikens.png");
+  background-size: 50px 50px;
+}
+.bombs {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/bombs.png");
+  background-size: 50px 50px;
+}
+.portals {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/portals.png");
+  background-size: 50px 50px;
+}
+
+.sword {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url("../assets/images/sword.png");
+  background-size: 80px 80px;
+  animation: 0.3s attack 1 linear;
+}
+
+@keyframes attack {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.shuriken {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/shuriken.png");
+  background-size: 50px 50px;
+  animation: 1s rotate infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bomb {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/images/bomb.png");
+  background-size: 50px 50px;
+  animation: 2.5s rotate infinite linear;
+}
+
+.portalIn {
+  position: absolute;
+  width: 60px;
+  height: 100px;
+  background-image: url("../assets/images/portalIn.png");
+  background-size: 60px 100px;
+  top: -160px;
+  left: 130px;
+  animation: portal 1s ease-out 1 reverse;
+}
+
+@keyframes portal {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.portalOut {
+  position: absolute;
+  width: 60px;
+  height: 100px;
+  background-image: url("../assets/images/portalOut.png");
+  background-size: 60px 100px;
+  top: -160px;
+  left: 130px;
+  animation: portal 1s ease-out 1;
+}
