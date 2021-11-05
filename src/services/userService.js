@@ -4,4 +4,8 @@ const handleLoginApi = (userUsername, userPassword) => {
     return axios.post("/api/login", { username: userUsername, password: userPassword})
 }
 
-export { handleLoginApi }
+const createNewUserService = (data) => {
+    return axios.post("/api/create-new-user", data)
+}
+
+export { handleLoginApi, createNewUserService }
