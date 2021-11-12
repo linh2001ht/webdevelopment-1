@@ -47,8 +47,6 @@ function App() {
   const [ isAuth, setIsAuth ] = useState(false)
   const value = useMemo(() => ({ isAuth, username, setUsername, password, setPassword }), [ username, setUsername ]);
 
-  
-  
   return (
     // <ProvideAuth>
       <Router>
