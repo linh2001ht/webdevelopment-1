@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { UserContext } from './Authentication/UserContext'
 
 function HomePageAdmin() {
-    const { username, password } = useContext(UserContext);
+    const { username } = useContext(UserContext);
     let history = useHistory()
     const style = () => {
         return (
@@ -37,11 +37,11 @@ function HomePageAdmin() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">
-                        <NavLink className="navlink" href="/shop" onClick={() => history.push("/shop")}>Shop</NavLink>
-                        <NavLink className="navlink" href="/rank" onClick={() => history.push("/rank")}>Ranking</NavLink>
-                        <NavLink className="navlink" href="/manageusers" onClick={() => history.push("/manageusers")}>Users</NavLink>
+                        <NavLink className="navlink" href="/shopadmin" onClick={() => history.push("/shopadmin")}>Shop</NavLink>
+                        <NavLink className="navlink" href="/rankadmin" onClick={() => history.push("/rankadmin")}>Ranking</NavLink>
+                        <NavLink className="navlink" href="/manageusers" onClick={() => {setIsAuth(true);history.push("/manageusers")}}>Users</NavLink>
                     </div>
-                    <NavLink className="logout" href="/" onClick={() => history.push("/")}>Logout</NavLink>
+                    <NavLink className="logout" href="/_admin" onClick={() => history.push("/_admin")}>Logout</NavLink>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

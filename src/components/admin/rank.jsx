@@ -22,7 +22,7 @@ import {
   Typography
 } from "@mui/material";
 import { AccountCircle, Settings, Logout } from "@mui/icons-material";
-
+import { withRouter } from "react-router-dom";
 const columns = [
   { id: "no", label: "Rank No.", minWidth: 70, align: "center" },
   { id: "name", label: "Name", minWidth: 170, align: "center" },
@@ -52,8 +52,8 @@ const DefaultRows = [
   { no: 20, name: "Player 20", score: 64 }
 ];
 
-export default function Ranking() {
-  const { username, role } = useContext(UserContext)
+function RankAdmin({isAuth}) {
+  const { username } = useContext(UserContext)
 
   const [rows, setRows] = React.useState(DefaultRows);
   const [searched, setSearched] = React.useState("");
@@ -70,6 +70,7 @@ export default function Ranking() {
     setRows(filteredRows);
   };
 
+  console.log("isAuth in rank : " + isAuth) //////////////////
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -94,14 +95,14 @@ export default function Ranking() {
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar>
           <a onClick={() => {
-            console.log("role in rank: " + role)
-            role === "1" ? window.open("/homepagemanager", "_self") :  window.open("/homepage", "_self") 
-                        // role === "0" ? window.open("/homepage", "_self") : window.open("/homepagemanager", "_self")
-                        window.close();
+                // console.log("role in rank: " + role)
+                window.open("/homepagemanager", "_self")
+                window.close();
                 }}><i class="fas fa-arrow-circle-left"></i></a>
             <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>
               Obstacle Crossed
             </Typography>
+            
             <IconButton
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -211,3 +212,5 @@ export default function Ranking() {
     </Paper>
   );
 }
+
+export default withRouter(RankAdmin)

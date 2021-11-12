@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { Navbar, Container, NavLink, Nav } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 import { UserContext } from './Authentication/UserContext'
+import { withRouter } from "react-router-dom"
 
 
 function HomePage() {
-    const { username, password } = useContext(UserContext);
+    const { username, setUsername, role } = useContext(UserContext);
     let history = useHistory()
     const style = () => {
         return (
@@ -34,7 +35,7 @@ function HomePage() {
         {style()}
             <Navbar bg="myBg" expand="lg" variant="dark">
                 <Container>
-                    <Navbar.Brand className="myTitle" href="#home">Obstacle Crossed</Navbar.Brand>
+                    <Navbar.Brand className="myTitle" href="/homepage">Obstacle Crossed</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">
@@ -45,7 +46,9 @@ function HomePage() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+
             <div className="home-picture-container">
+            <button onClick={() => setUsername("hey") }>Test</button>
                 <div className="pic">
                     <img src="#" alt="avatar" />
                 </div>
@@ -62,4 +65,4 @@ function HomePage() {
     
 }
 
-export default HomePage
+export default withRouter(HomePage)

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
-import logo from './logo.png';
-import HomePage from './HomePage';
+import logo from '../logo.png';
+import HomePageAdmin from "../Homepage_Admin";
 import { Link } from 'react-router-dom';
 import { Redirect, useHistory } from 'react-router-dom'
-import { UserContext } from "../components/Authentication/UserContext"
+import { getRoles } from '@testing-library/react';
+import { UserContext } from "../Authentication/UserContext"
 
 // async function loginUser(credentials) {
 //     return fetch('http://localhost:8080/login', {
@@ -25,11 +26,11 @@ import { UserContext } from "../components/Authentication/UserContext"
     
 
 
-function SignIn( { defaultUser,  error, setError, setIsAuth }) {
+function SignInAdmin( { defaultUser, error, setError, setIsAuth }) {
 
 
     let history = useHistory()
-    const { username, setUsername, password, setPassword } = useContext(UserContext)
+    const { username, setUsername, password, setPassword  } = useContext(UserContext)
     const [details, setDetails] = useState({username: "", password: ""}); // TODO thay ở đây để chuyển role
 
 
@@ -75,7 +76,7 @@ function SignIn( { defaultUser,  error, setError, setIsAuth }) {
                 if(Login(details)) {
                     // console.log("detail role: " + details.role)
                     localStorage.setItem("accessToken", result.accessToken);
-                    history.push("/homepage");
+                    history.push("/homepagemanager");   
                 }
                 
             })
@@ -138,4 +139,4 @@ function SignIn( { defaultUser,  error, setError, setIsAuth }) {
     )
 
 }
-export default SignIn
+export default SignInAdmin

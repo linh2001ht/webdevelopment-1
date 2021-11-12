@@ -1,22 +1,21 @@
 import React, {useContext} from "react";
-import "./Shop.css";
-import LockImage from "../assets/images/Locker.png";
-import { UserContext } from "./Authentication/UserContext";
+import "../Shop.css";
+import LockImage from "../../assets/images/Locker.png";
+import { UserContext } from "../Authentication/UserContext";
 
-const Shop = () => {
+function ShopAdmin()  {
 
-    const { username, role } = useContext(UserContext)
+    const { username } = useContext(UserContext)
     
     return(
         
         <div>
-        {console.log("role in shop: " + role)}
+        {/* {console.log("role in shop: " + role)} */}
             <div class="bar">
                 <div class="nar">
                 {/* thay 0 thành 1, đổi thứ tự, tương tự với page ranking */}
                 <a onClick={() => {
-                    console.log("role in shop: ")
-                        role === "1" ? window.open("/homepagemanager", "_self") :  window.open("/homepage", "_self") 
+                        window.open("/homepagemanager", "_self")
                         window.close();
                 }}><i class="fas fa-arrow-circle-left"></i></a>
                     <span class="titlegame">Obstacles Crossed</span>
@@ -69,4 +68,4 @@ const Shop = () => {
     );
 }
 
-export default Shop;
+export default ShopAdmin;
