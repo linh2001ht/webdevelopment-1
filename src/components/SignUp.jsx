@@ -6,9 +6,12 @@ function SignUp() {
     const [userInfo, setUserInfo] = useState({
         email: "",
         username: "",
+        gender: "",
         age: "",
-        password: ""
+        password: "",
+        role: "0"
     });
+    const [confirmWarn, setConfirmWarn] = useState("")
 
     const handleOnchangeInput = (event, id) => {
         let copyState = {...userInfo}
@@ -32,6 +35,15 @@ function SignUp() {
         
     }
 
+    const handleConfirmPassword = (event) => {
+        if(event.target.value === userInfo.password) {
+            setConfirmWarn("")
+        } else {
+            setConfirmWarn("Confirm password not match!")
+        }
+        // console.log(event.target.value)
+    }
+
     return (
         <div className="sign-up-container">
             <div>
@@ -52,8 +64,10 @@ function SignUp() {
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Gender: </label>
-                    <input className="sign-up-radios" type="radio" name="Male" value="male" />Male
-                    <input className="sign-up-radios" type="radio" name="Female" value="female" />Female<br />
+                    <input className="sign-up-radios" type="radio" name="Male" value="male" value = "1"
+                    checked={userInfo.gender==="1"} onChange = {(event) => { handleOnchangeInput(event, "gender") }} />Male
+                    <input className="sign-up-radios" type="radio" name="Female" value="female" value = "0"
+                    checked={userInfo.gender==="0"} onChange = {(event) => { handleOnchangeInput(event, "gender") }} />Female<br />
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Age: </label>
@@ -69,8 +83,12 @@ function SignUp() {
                 </div>
                 <div className="sign-up-input-container">
                     <label className="sign-up-labels">Confirm password: (*)</label>
-                    <input className="sign-up-inputs" autoComplete="off" type="password" name="confirm-password" id="cf-pwd" /><br />
+                    <input className="sign-up-inputs" autoComplete="off" type="password" name="confirm-password" id="cf-pwd" 
+                    onChange = {(event) => {handleConfirmPassword(event)}} /><br />
                 </div>
+            </div>
+            <div className="confirm-warn">
+                <p>{confirmWarn}</p>
             </div>
             <div className="sign-up-button-container">
                 {/* <input className="sign-up-buttons" type="submit" value="Sign Up" /> */}
@@ -80,6 +98,7 @@ function SignUp() {
                         window.close();
                     }}>Cancel</button>
             </div>
+            
         </div>
     )
 }

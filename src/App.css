@@ -164,6 +164,12 @@ body {
     display: inline-block;
 }
 
+.confirm-warn {
+    color: red;
+    margin-left: 45%;
+    font-size: 15px;
+}
+
 .sign-up-inputs {
     border-style: none;
     border-bottom-style: solid 1px #FFFFFF;
