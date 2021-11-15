@@ -119,7 +119,8 @@ function SignIn() {
  
     const [details, setDetails] = useState({username: "", password: ""});
     const [err, setErr] = useState("")
- 
+    let history = useHistory()
+    
     const handleLogin = async (e) => {
         e.preventDefault();
         setErr("")
@@ -134,6 +135,8 @@ function SignIn() {
             }
             if (data && data.errCode === 0) {
                 console.log('loging success');
+                history.push("/homepage");
+
             }
  
         } catch (error) {

@@ -176,7 +176,14 @@ export default function Game() {
         >
           {zeroPad(portals, 2)}
         </span>
+
+
+
+
         {/* High score */}
+
+
+      
         <span
           style={{
             position: "relative",
@@ -185,7 +192,12 @@ export default function Game() {
         >
           H:{zeroPad(Math.floor(HScore), 5)}
         </span>
+
+
+
         {/* Present score */}
+
+        
         <span
           style={{
             position: "relative",
@@ -194,6 +206,13 @@ export default function Game() {
         >
           {zeroPad(Math.floor(score), 5)}{" "}
         </span>
+
+
+
+
+
+
+
         {/* Add exit button */}
         <span className="exit-container">
           <button className="exit-button" onClick={() => {
