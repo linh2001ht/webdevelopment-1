@@ -33,7 +33,7 @@ function SignIn( { defaultUser,  error, setError, setIsAuth }) {
     const [details, setDetails] = useState({username: "", password: ""}); // TODO thay ở đây để chuyển role
 
 
-    const Login = () => {
+    const Login = (details) => {
         let isHas = false;
         defaultUser.forEach( (acc) => {
           if(details.username === acc.username && details.password === acc.password){
@@ -60,7 +60,7 @@ function SignIn( { defaultUser,  error, setError, setIsAuth }) {
     async function submitHandler(e) {
         e.preventDefault();
         var urlencoded = new URLSearchParams();
-            return fetch('http://localhost:8080/', {
+            return fetch('http://localhost:8082/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
