@@ -27,7 +27,7 @@ function SignUp() {
     //     // nếu đúng -> add vào database
     //     // làm giúp t phần radio luôn nha, chọn male với female ấy
     // }
-    const handleSignUp = () => {}
+    const handleSignUp = () => {
 
     console.log("sign up is call")
     // const handleSignUp = async () => {
@@ -39,7 +39,7 @@ function SignUp() {
     //     let response = await getAllUser("ALL")
     //     console.log("get user from node.js: ", response)
     // })
-
+}
     
     return (
         <div className="sign-up-container">
