@@ -11,7 +11,10 @@ function HomePage() {
         return (
           <style jsx>{`
             .myTitle {
-                color: #C89595;
+                color:#dffffd;
+                font-size:2rem;
+
+                
             }
             .nav {
                 margin-left: 20%;
@@ -19,11 +22,11 @@ function HomePage() {
                 display: flex;
             }
             .navlink {
-                color: #FFF;
+                color: #dffffd;
                 margin: 0% 10%;
             }
             .logout {
-                color: #FFF;
+                color: #dffffd;
                 margin-left: 200px;
             }
           `}</style>
@@ -34,7 +37,7 @@ function HomePage() {
         {style()}
             <Navbar bg="myBg" expand="lg" variant="dark">
                 <Container>
-                    <Navbar.Brand className="myTitle" href="#home">Obstacle Crossed</Navbar.Brand>
+                    <Navbar.Brand className="myTitle" href="#home" style={{color:"#dffffd"}}>Obstacle Crossed</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">

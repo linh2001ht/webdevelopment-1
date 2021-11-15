@@ -9,19 +9,19 @@
 
     color:black;
     padding-top:10px ;
-    min-height: 110px;
+    min-height: 80px;
     border-bottom: #170055 3px solid;
     font-size: 20px;
     align-items: center;
   }
-
+  
   .container-nav-pm h1{
-    text-shadow: -2px 0 #DFFFFD, 0 2px #DFFFFD, 2px 0 #DFFFFD, 0 -2px #DFFFFD;
+    color: #DFFFFD;
     cursor: pointer;
     float: left;
     margin-left: 60px;
-    font-size: 40px;
-   
+    font-size: 2rem;
+    margin-top: 15px;
     width: 100%;
   }
 
