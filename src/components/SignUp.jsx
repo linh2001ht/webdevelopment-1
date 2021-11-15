@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllUser } from '../services/userService'
+// import { getAllUser } from '../services/userService'
 
 function SignUp() {
     const [ account, setAccount ] = useState({
@@ -29,15 +29,16 @@ function SignUp() {
     // }
     const handleSignUp = () => {}
 
+    console.log("sign up is call")
     // const handleSignUp = async () => {
     //     let response = await getAllUser("ALL")
     //     console.log("get user from node.js: ", response)
     // }
 
-    useEffect(async () => {
-        let response = await getAllUser("ALL")
-        console.log("get user from node.js: ", response)
-    })
+    // useEffect(async () => {
+    //     let response = await getAllUser("ALL")
+    //     console.log("get user from node.js: ", response)
+    // })
 
     
     return (
