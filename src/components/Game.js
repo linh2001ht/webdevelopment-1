@@ -12,7 +12,6 @@ export default function Game() {
   const [score, setScore] = useState(0);
   const [HScore, setHScore] = useState(0);
   const [stoneX, setStoneX] = useState([]);
-
   const [itemX, setItemX] = useState(-30);
   // const [swords, setSwords] = useState(0);
   // const [shurikens, setShurikens] = useState(0);
