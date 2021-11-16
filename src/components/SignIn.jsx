@@ -131,12 +131,14 @@ function SignIn() {
             let data = await handleLoginApi(details.username, details.password);
             if (data && data.errCode !== 0) {
                 setErr(data.message)
- 
+
             }
             if (data && data.errCode === 0) {
-                console.log('loging success');
-                history.push("/homepage");
-
+                if(data.user.role == 0) {
+                    console.log('loging success');
+                    history.push("/homepage");
+                }
+                else setErr("Username doesn't exist");
             }
  
         } catch (error) {

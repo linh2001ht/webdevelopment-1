@@ -348,14 +348,7 @@ export default function Game() {
         >
           {zeroPad(portals, 2)}
         </span>
-
-
-
-
         {/* High score */}
-
-
-      
         <span
           style={{
             position: "relative",
