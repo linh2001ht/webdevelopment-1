@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+// import { getAllUser } from '../services/userService'
 
 function SignUp() {
     const [ account, setAccount ] = useState({
@@ -10,23 +11,35 @@ function SignUp() {
         confirm: ""
     })
 
+    // const handleSignUp = () => {
+    //     if(!account.email.includes("@") || !account.email.includes(".")) {
+    //         console.log("Invalid email!")
+    //     }
+    //     // if(username)  nếu username trùng với username có trong database -> console.log("username đã đc sd")
+    //     if(account.age !== parseInt(account.age, 10))
+    //     {
+    //         console.log("Tuoi khong hop le")
+    //     }
+    //     if(account.password !== account.confirm) {
+    //         console.log("hãy xác nhận mật khẩu đúng!")
+    //     }
+    //     // nếu 1 trong những cái trên sai -> reset lại tất cả 
+    //     // nếu đúng -> add vào database
+    //     // làm giúp t phần radio luôn nha, chọn male với female ấy
+    // }
     const handleSignUp = () => {
-        if(!account.email.includes("@") || !account.email.includes(".")) {
-            console.log("Invalid email!")
-        }
-        // if(username)  nếu username trùng với username có trong database -> console.log("username đã đc sd")
-        if(account.age !== parseInt(account.age, 10))
-        {
-            console.log("Tuoi khong hop le")
-        }
-        if(account.password !== account.confirm) {
-            console.log("hãy xác nhận mật khẩu đúng!")
-        }
-        // nếu 1 trong những cái trên sai -> reset lại tất cả 
-        // nếu đúng -> add vào database
-        // làm giúp t phần radio luôn nha, chọn male với female ấy
-    }
 
+    console.log("sign up is call")
+    // const handleSignUp = async () => {
+    //     let response = await getAllUser("ALL")
+    //     console.log("get user from node.js: ", response)
+    // }
+
+    // useEffect(async () => {
+    //     let response = await getAllUser("ALL")
+    //     console.log("get user from node.js: ", response)
+    // })
+}
     
     return (
         <div className="sign-up-container">

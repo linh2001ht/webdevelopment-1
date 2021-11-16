@@ -25,6 +25,10 @@ const Appi = () => {
     return (
         <>
             <div className="container-nav-pm">
+            <a onClick={() => {
+                        window.open("/manageusers", "_self");
+                        window.close();
+                }}><i class="fas fa-arrow-circle-left"></i></a>
                 <div id="branding">
                     <h1>Obstacles Crossed</h1>
                 </div>
@@ -100,7 +104,7 @@ const Appi = () => {
 
                 </div>
                 <div className="save_cancel-pm">
-                    <button id="cancel" onClick={() => history.push("/homepage")} name="cancel">cancel</button>
+                    <button id="cancel" onClick={() => history.push("/homepagemanager")} name="cancel">cancel</button>
 
                     <button id="done" name="done">save</button>
                 </div>

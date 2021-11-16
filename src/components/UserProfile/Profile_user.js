@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../Authentication/UserContext"
 import './Profile_user.css';
 
 const App_user = () => {
+    const { username, role } = useContext(UserContext) 
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
 

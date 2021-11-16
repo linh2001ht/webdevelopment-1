@@ -263,3 +263,43 @@ body {
     width: 30%;
     height: 50%;
 }
+
+/* -------- Manage user ---------- */
+
+.manage-user-navbar {
+    background-color: #2C394B;
+    height: 70px;
+}
+
+.mu-back-button {
+    margin: auto 10px;
+    color: white;
+    font-size: 2rem;
+}
+
+.mu-navbrand {
+    margin: auto 10px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.list-users {
+    font-size: 1.5rem;
+    color: #2C394B;
+    margin: 3% 10%;
+}
+
+/* --------- create table ---------- */
+
+.paper-container {
+    /* background-color: red; */
+    width: 80%;
+}
+.detail-button {
+    background-color: lightskyblue;
+    width: 100px;
+    height: 50px;
+}
+
+/* ---------- home page manager --------- */
+

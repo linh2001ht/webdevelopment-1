@@ -1,22 +1,41 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
-import logo from './logo.png';
-import HomePage from './HomePage';
+import logo from '../logo.png';
+import HomePageAdmin from "../Homepage_Admin";
 import { Link } from 'react-router-dom';
 import { Redirect, useHistory } from 'react-router-dom'
-import { UserContext } from "../components/Authentication/UserContext"
-import { handleLoginApi } from "../services/userService"
+import { getRoles } from '@testing-library/react';
+import { UserContext } from "../Authentication/UserContext"
+import { handleLoginApi } from "../../services/userService"
 
-// function SignIn( { defaultUser,  error, setError, setIsAuth }) {
+// async function loginUser(credentials) {
+//     return fetch('http://localhost:8080/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(credentials)
+//     })
+//       .then(data => data.json())
+//       .then(result => {
+//           console.log(result);
+//           localStorage.setItem("accessToken", result.accessToken);
+//           history.replace("/homepage");
+//       })
+//    }
+    
+
+
+// function SignInAdmin( { defaultUser, error, setError, setIsAuth }) {
 
 
 //     let history = useHistory()
-//     const { username, setUsername, password, setPassword } = useContext(UserContext)
+//     const { username, setUsername, password, setPassword  } = useContext(UserContext)
 //     const [details, setDetails] = useState({username: "", password: ""}); // TODO thay ở đây để chuyển role
 
 
-//     const Login = (details) => {
+//     const Login = () => {
 //         let isHas = false;
 //         defaultUser.forEach( (acc) => {
 //           if(details.username === acc.username && details.password === acc.password){
@@ -43,7 +62,7 @@ import { handleLoginApi } from "../services/userService"
 //     async function submitHandler(e) {
 //         e.preventDefault();
 //         var urlencoded = new URLSearchParams();
-//             return fetch('http://localhost:8082/', {
+//             return fetch('http://localhost:8080/', {
 //             method: 'POST',
 //             headers: {
 //                 'Content-Type': 'application/json'
@@ -58,7 +77,7 @@ import { handleLoginApi } from "../services/userService"
 //                 if(Login(details)) {
 //                     // console.log("detail role: " + details.role)
 //                     localStorage.setItem("accessToken", result.accessToken);
-//                     history.push("/homepage");
+//                     history.push("/homepagemanager");   
 //                 }
                 
 //             })
@@ -99,6 +118,14 @@ import { handleLoginApi } from "../services/userService"
 //                             <input className="sign-in-inputs" placeholder="  password..." type="password" name="password" id="pwd" onChange= {e => setDetails({...details, password: e.target.value})} value={details.password} />
 //                         </div>
 //                     </div>
+//                     {/* <Select className="cbb" defaultValue="Player" onChange={value => {
+//                         console.log(`you are ${value}`)
+//                     }}>
+//                         <Option className="cbbItems" role="Player" value="Player">Player</Option>
+//                         <Option className="cbbItems" role="Admin" value="Admin">Admin</Option>
+//                     </Select>
+//                     <br /> */}
+
 //                     <input className="SubmitBtn" type="button" onClick={submitHandler} value="Login" /><br />
 //                     <div className="sign-up-btn">
 //                         <a className="sign-up-btn"  href='/SignUp' onClick={() => history.push("/signup")} >Sign Up</a><br />
@@ -113,9 +140,9 @@ import { handleLoginApi } from "../services/userService"
 //     )
 
 // }
-// export default SignIn
+// export default SignInAdmin
 
-function SignIn() { 
+function SignInAdmin() { 
  
     const [details, setDetails] = useState({username: "", password: ""});
     const [err, setErr] = useState("")
@@ -135,7 +162,7 @@ function SignIn() {
             }
             if (data && data.errCode === 0) {
                 console.log('loging success');
-                history.push("/homepage");
+                history.push("/homepagemanager");
 
             }
  
@@ -191,4 +218,4 @@ function SignIn() {
     )
 }
  
-export default SignIn
+export default SignInAdmin

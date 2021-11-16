@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './NavButton';
+import { Button } from '../NavButton';
 import { Link, useHistory } from 'react-router-dom';
-import './Toppage.css';
+import '../Toppage.css';
+import fblogo from '../../assets/images/Facebook Icon .png'; 
+import instalogo from '../../assets/images/instagram-logo.png';
+import AboutUs from '../pages/AboutUs';
+import SignInAdmin from './SignInAdmin';
 
-import fblogo from '../assets/images/Facebook Icon .png';
-import instalogo from '../assets/images/instagram-logo.png';
-import AboutUs from './pages/AboutUs';
-import SignIn from './SignIn';
-import { OmitProps } from 'antd/lib/transfer/ListBody';
-
-
-function Navbar({setIsAuth}) {
+function Admin() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   // const [bgState, setBgState] = useState(false);
-
 
   let history = useHistory();
   const handleClick = () => setClick(!click);
@@ -36,7 +32,6 @@ function Navbar({setIsAuth}) {
 
   return (
     <>
-    
      {/*Phan navigation bar cua toppage*/}
       <nav className='navbar'>
         <div className='navbar-container'>
@@ -63,7 +58,7 @@ function Navbar({setIsAuth}) {
             </li>
             <li className='nav-item'>
               <Link
-                to='./signin'
+                to='./signinadmin'
                 className='nav-links'
                 onClick={closeMobileMenu}
                 
@@ -116,4 +111,4 @@ function Navbar({setIsAuth}) {
   );
 }
 
-export default Navbar;
+export default Admin;
