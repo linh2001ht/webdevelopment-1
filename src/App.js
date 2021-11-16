@@ -89,6 +89,7 @@ function App() {
             </UserContext.Provider>
           </Switch>
       </Router>
+      
     </ProvideAuth>
     
   );
