@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-pascal-case */
-import React, { useContext, createContext, useState, useMemo } from 'react'
+import React, { useContext, createContext, useState, useMemo, useEffect } from 'react'
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
 import SignIn from './components/SignIn';
@@ -26,29 +26,19 @@ import Admin from './components/admin/_admin';
 import SignInAdmin from './components/admin/SignInAdmin';
 import RankAdmin from './components/admin/rank';
 import ShopAdmin from './components/admin/shop';
+import GameAdmin from './components/admin/game';
 
 function App() {
 
   // const auth = useAuth();
-  const fictionPlayer = [{
-    username: "user01",
-    password: "user123",
-  }]
-  const fictionAdmin = [{
-    username: "admin01",
-    password: "admin123",
-  }]
-
-
   const [ username, setUsername ] = useState(null)
-  const [ password, setPassword ] = useState(null)
   const [ error, setError ] = useState(null)
-  // const [ role, setRole ] = useState(0)
   const [ isAuth, setIsAuth ] = useState(false)
-  const value = useMemo(() => ({ isAuth, username, setUsername, password, setPassword }), [ username, setUsername ]);
+  const value = useMemo(() => ({ isAuth, username, setUsername }), [ username, setUsername ]);
 
+  
   return (
-    // <ProvideAuth>
+    <ProvideAuth>
       <Router>
           <Switch>
             <Route exact path="/" component={Navbar}/>
@@ -60,14 +50,14 @@ function App() {
                 exact 
                 path="/signin"
                 render={ props => (
-                  <SignIn {...props} defaultUser={fictionPlayer} setIsAuth={setIsAuth}  error={error} setError={setError}/>
+                  <SignIn {...props} setIsAuth={setIsAuth}  error={error} setError={setError}/>
                 )} 
               />
               <Route 
                 exact 
                 path="/signinadmin"
                 render={ props => (
-                  <SignInAdmin {...props} defaultUser={fictionAdmin} setIsAuth={setIsAuth} error={error} setError={setError} />
+                  <SignInAdmin {...props} setIsAuth={setIsAuth} error={error} setError={setError} />
                 )}
               />
 
@@ -84,11 +74,12 @@ function App() {
               <Route exact path="/manageusers" component={ManageUser} isAuth={isAuth} />
               <Route exact path="/rankadmin" component={RankAdmin} isAuth={isAuth} />
               <Route path="/shopadmin" component={ShopAdmin} isAuth={isAuth} />
+              <Route exact path="/playadmin" component={GameAdmin} />
               {/* thêm protected router nếu có thời gian */}
             </UserContext.Provider>
           </Switch>
       </Router>
-    // </ProvideAuth>
+    </ProvideAuth>
     
   );
 }

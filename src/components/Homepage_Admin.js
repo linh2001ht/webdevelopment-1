@@ -37,9 +37,9 @@ function HomePageAdmin() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">
-                        <NavLink className="navlink" href="/shopadmin" onClick={() => history.push("/shopadmin")}>Shop</NavLink>
-                        <NavLink className="navlink" href="/rankadmin" onClick={() => history.push("/rankadmin")}>Ranking</NavLink>
-                        <NavLink className="navlink" href="/manageusers" onClick={() => {setIsAuth(true);history.push("/manageusers")}}>Users</NavLink>
+                        <Link className="navlink" to="/shopadmin">Shop</Link>
+                        <Link className="navlink" to="/rankadmin">Ranking</Link>
+                        <Link className="navlink" to="/manageusers">Users</Link>
                     </div>
                     <NavLink className="logout" href="/_admin" onClick={() => history.push("/_admin")}>Logout</NavLink>
                     </Navbar.Collapse>

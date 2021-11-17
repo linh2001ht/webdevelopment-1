@@ -11,7 +11,7 @@ import { handleLoginApi } from "../../services/userService"
 
 
 function SignInAdmin() { 
- 
+    const { username, setUsername } = useContext(UserContext) 
     const [details, setDetails] = useState({username: "", password: ""});
     const [err, setErr] = useState("")
     let history = useHistory()
@@ -19,10 +19,7 @@ function SignInAdmin() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setErr("")
-        // console.log(details)
- 
         try {
-            console.log("running")
             let data = await handleLoginApi(details.username, details.password);
             if (data && data.errCode !== 0) {
                 setErr(data.message)
@@ -30,7 +27,7 @@ function SignInAdmin() {
             }
             if (data && data.errCode === 0) {
                 if(data.user.role == 1){
-                    console.log('loging success');
+                    setUsername(details.username)
                     history.push("/homepagemanager");
                 }
                 else setErr("Username doesn't exist");

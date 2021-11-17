@@ -25,42 +25,22 @@ const createData = (no, username, email, detail) => {
 }
 
 
-const DetailButton = () => {
+const DetailButton = ({userID}) => {
     let history = useHistory()
+    // khi kích vào nút này -> dựa vào userID để hiện thị lên cái profile của người đó 
     return <button 
                 className="detail-button" 
-                onClick={() => history.push("/managerprofile")}
+                onClick={ async () => {
+                    let res = await getAllUser(userID)
+                    console.log("res: " + res.users.id)
+                    history.push("/managerprofile")
+                }}
             >Detail</button>
 }
 
 var isDone = false
 const rows = []
 
-const getData = async () => {
-    let response = await getAllUser("ALL")
-    console.log("res", response.users)
-
-    
-    if(response && response.errCode === 0) {
-        const data = response.users
-        console.log("DATA FROM GETDATA", data)
-
-        if(isDone === false) {
-            data.forEach( (item) => {
-                console.log("HAHAHAHAHAHAAH", item)
-                if(item.role===0)
-                    rows.push(createData(item.id, item.username, item.email, <DetailButton />))
-            })
-            isDone = true
-            setRow(rows)
-        } else {
-            return;
-        }
-    }
-
-
-    console.log(rows)
-}
 
 function DataTable() {
 
@@ -73,19 +53,15 @@ function DataTable() {
     
     const getData = async () => {
         let response = await getAllUser("ALL")
-        console.log("res", response.users)
         if(response && response.errCode === 0) {
             const data = response.users
-            console.log("DATA FROM GETDATA", data)
-    
             if(isDone === false) {
                 data.forEach( (item) => {
-                    console.log(item)
+                    // console.log(item)
                     if(item.role===0)
-                        rows.push(createData(item.id, item.username, item.email, <DetailButton />))
+                        rows.push(createData(item.id, item.username, item.email, <DetailButton userID={item.id} />))
                 })
                 isDone = true
-                console.log("ROW in GetDATA", rows)
                 setRow(rows)
             } else {
                 return;
@@ -94,8 +70,6 @@ function DataTable() {
     }
 
     getData()
-
-    console.log("row after", rows)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -123,27 +97,19 @@ function DataTable() {
                         </TableRow>
                     </TableHead>
                     
-
                     <TableBody>
-                        {console.log("TEMPS", rows)}
                         {rows
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => {
-                            console.log("AFTER MAP", row)
                             return (
                             <TableRow hover role="checkbox" tabIndex={-1} >
-                                {console.log("ROW: ", rows)}
                                 {columns.map((column) => {
                                 const value = row[column.id];
-                                console.log(column.id)
                                 return (
                                     <TableCell key={column.id}
                                     align={column.align}
                                     >
                                     {value}
-                                    {/* {column.format && typeof value === 'number'
-                                        ? column.format(value)
-                                        : value} */}
                                     </TableCell>
                                 );
                                 } 

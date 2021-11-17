@@ -6,7 +6,8 @@ import { withRouter } from "react-router-dom"
 
 
 function HomePage() {
-    const { username, setUsername, role } = useContext(UserContext);
+    const { username, setUsername } = useContext(UserContext);
+    console.log("username in homepage: " , username)
     let history = useHistory()
     const style = () => {
         return (
@@ -42,8 +43,8 @@ function HomePage() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">
-                        <NavLink className="navlink" href="/shop" onClick={() => history.push("/shop")}>Shop</NavLink>
-                        <NavLink className="navlink" href="/rank" onClick={() => history.push("/rank")}>Ranking</NavLink>
+                        <Link className="navlink" to="/shop" >Shop</Link>
+                        <Link className="navlink" to="/rank" >Ranking</Link>
                     </div>
                     <NavLink className="logout" href="/" onClick={() => history.push("/")}>Logout</NavLink>
                     </Navbar.Collapse>
@@ -51,7 +52,6 @@ function HomePage() {
             </Navbar>
 
             <div className="home-picture-container">
-            <button onClick={() => setUsername("hey") }>Test</button>
                 <div className="pic">
                     <img src="#" alt="avatar" />
                 </div>

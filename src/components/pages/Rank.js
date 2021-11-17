@@ -79,6 +79,7 @@ export default function Ranking() {
   };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    console.log("username in rank: "+username)
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -94,10 +95,8 @@ export default function Ranking() {
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar>
           <a onClick={() => {
-            console.log("role in rank: " + role)
-            role === "1" ? window.open("/homepagemanager", "_self") :  window.open("/homepage", "_self") 
-                        // role === "0" ? window.open("/homepage", "_self") : window.open("/homepagemanager", "_self")
-                        window.close();
+             window.open("/homepage", "_self") 
+             window.close();
                 }}><i class="fas fa-arrow-circle-left"></i></a>
             <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>
               Obstacle Crossed

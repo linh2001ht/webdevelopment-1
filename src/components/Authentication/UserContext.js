@@ -1,6 +1,9 @@
 import { createContext, useContext, useState } from "react";
 
-export const UserContext = createContext(null);
+const info = {
+  username: null
+}
+export const UserContext = createContext(info);
 
 export const ProvideAuth = ({ children }) => {
     const auth = useProvideAuth();
@@ -28,24 +31,24 @@ signout(cb) {
 };
 
 export const useProvideAuth = () => {
-const [user, setUser] = useState(null);
+  const [username, setUsername] = useState(null);
 
-const signin = cb => {
-    return fakeAuth.signin(() => {
-    setUser("user");
-    cb();
-    });
-};
+  const signin = cb => {
+      return fakeAuth.signin(() => {
+      setUsername(username);
+      cb();
+      });
+  };
 
-const signout = cb => {
-    return fakeAuth.signout(() => {
-    setUser(null);
-    cb();
-    });
-};
+  const signout = cb => {
+      return fakeAuth.signout(() => {
+      setUsername(null);
+      cb();
+      });
+  };
 
 return {
-    user,
+    username,
     signin,
     signout
 };
