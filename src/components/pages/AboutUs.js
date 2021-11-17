@@ -102,14 +102,15 @@ class AboutUs extends React.Component {
     return (
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" style={{ background: "#2E3B55" }}>
+          <AppBar position="static" style={{ background: "#2E3B55" ,height:"80px"}}>
             <Toolbar>
             <a onClick={() => {
                         window.open("/", "_self");
                         window.close();
-                    }}><i class="fas fa-arrow-circle-left"></i></a>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Obstacle Crossed
+                    }}><i  class="fas fa-arrow-circle-left"></i></a>
+              <Typography variant="h1" component="div" sx={{ flexGrow: 1 }} style={{fontSize:"2rem",
+            width:"400px",color:"#dffffd" ,padding:"100px"}}>
+                About Us
               </Typography>
               <IconButton
                 size="large"

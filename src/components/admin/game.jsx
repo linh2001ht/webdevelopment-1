@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "./Authentication/UserContext";
-import "./Game.css";
+import { UserContext } from "../Authentication/UserContext";
+import "../Game.css";
 import { Link } from "react-router-dom";
 
 
 
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 
-export default function Game() {
+export default function GameAdmin() {
   const { username } = useContext(UserContext)
   const fps = 60;
   const [start, setStart] = useState(false);
@@ -54,10 +54,10 @@ export default function Game() {
   const [bomb, setBomb] = useState([]);
   const [portalIn, setPortalIn] = useState(false);
   const [portalOut, setPortalOut] = useState(false);
-  const [swords, setSwords] = useState(5);
-  const [shurikens, setShurikens] = useState(5);
-  const [bombs, setBombs] = useState(5);
-  const [portals, setPortals] = useState(5);
+  const [swords, setSwords] = useState(0);
+  const [shurikens, setShurikens] = useState(0);
+  const [bombs, setBombs] = useState(0);
+  const [portals, setPortals] = useState(0);
   const [charY, setCharY] = useState(380);
   const [charO, setCharO] = useState(1);
   const [jump, setJump] = useState(false);
@@ -427,6 +427,7 @@ export default function Game() {
           left: 850
         }}
       />
+
       <div
         style={{
           position: "relative"

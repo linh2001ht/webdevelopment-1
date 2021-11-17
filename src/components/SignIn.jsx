@@ -117,6 +117,7 @@ import { handleLoginApi } from "../services/userService"
 
 function SignIn() { 
  
+    const { username, setUsername } = useContext(UserContext)
     const [details, setDetails] = useState({username: "", password: ""});
     const [err, setErr] = useState("")
     let history = useHistory()
@@ -124,19 +125,19 @@ function SignIn() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setErr("")
-        // console.log(details)
- 
+
         try {
-            console.log("running")
             let data = await handleLoginApi(details.username, details.password);
             if (data && data.errCode !== 0) {
                 setErr(data.message)
- 
+
             }
             if (data && data.errCode === 0) {
-                console.log('loging success');
-                history.push("/homepage");
-
+                if(data.user.role == 0) {
+                    setUsername(details.username)
+                    history.push("/homepage");
+                }
+                else setErr("Username doesn't exist");
             }
  
         } catch (error) {
@@ -149,6 +150,11 @@ function SignIn() {
         }
     }
  
+    // useEffect(() => {
+    //     localStorage.setItem("username", username)
+    //     const user = localStorage.getItem("username")
+    //     console.log("user" , user)
+    //   }, [username])
     return (
         <form className="sign-in-container">
             <div className="form-inner">
@@ -157,7 +163,6 @@ function SignIn() {
                 <div className="logo-container">
                     <img className="logo" src={logo} alt="img"/>
                 </div>
-                {/* {(err !== "") ? <div className="error">{err}</div> : ""} */}
                     <div className="error">{err}</div>
                 <div className="sign-in-input-container">
                     <div>
@@ -177,7 +182,6 @@ function SignIn() {
  
                 <br />
                 <button className="SubmitBtn" onClick= {handleLogin} >Login</button>
-                {/* <input className="SubmitBtn" value="Login" onClick= {handleLogin} /> */}
                 <br />
                 <div className="sign-up-btn">
                     <a className="sign-up-btn"  href='#SignUp' >Sign Up</a><br />

@@ -1,16 +1,14 @@
 import * as React from "react";
-import { useContext } from "react";
-import { UserContext } from "../Authentication/UserContext";
 import {
   AppBar,
   Avatar,
   Box,
   IconButton,
-  ListItemIcon,
   Menu,
   MenuItem,
   Paper,
   Table,
+  Button,
   TableBody,
   TableCell,
   TableContainer,
@@ -21,12 +19,29 @@ import {
   Toolbar,
   Typography
 } from "@mui/material";
-import { AccountCircle, Settings, Logout } from "@mui/icons-material";
 
 const columns = [
-  { id: "no", label: "Rank No.", minWidth: 70, align: "center" },
-  { id: "name", label: "Name", minWidth: 170, align: "center" },
-  { id: "score", label: "Score", minWidth: 100, align: "center" }
+  {
+    id: "no",
+    label: "Rank No.",
+    minWidth: 70,
+    align: "center",
+    format: (value) => value.toLocaleString("en-US")
+  },
+  {
+    id: "name",
+    label: "Name",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toLocaleString("en-US")
+  },
+  {
+    id: "score",
+    label: "Score",
+    minWidth: 100,
+    align: "center",
+    format: (value) => value.toLocaleString("en-US")
+  }
 ];
 
 const DefaultRows = [
@@ -45,21 +60,25 @@ const DefaultRows = [
   { no: 13, name: "Player 13", score: 80 },
   { no: 14, name: "Player 14", score: 79 },
   { no: 15, name: "Player 15", score: 77 },
-  { no: 16, name: "Player 16", score: 74 },
-  { no: 17, name: "Player 17", score: 70 },
-  { no: 18, name: "Player 18", score: 67 },
-  { no: 19, name: "Player 19", score: 65 },
-  { no: 20, name: "Player 20", score: 64 }
+  { no: 16, name: "Player 6", score: 72 },
+  { no: 17, name: "Player 7", score: 71 },
+  { no: 18, name: "Player 8", score: 70 },
+  { no: 19, name: "Player 9", score: 68 },
+  { no: 20, name: "Player 10", score: 65 }
 ];
 
-export default function Ranking() {
-  const { username, role } = useContext(UserContext)
+const username = "Player 8";
 
+export default function UserRank() {
   const [rows, setRows] = React.useState(DefaultRows);
   const [searched, setSearched] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const your_rank = DefaultRows.find((row) => {
+    return row.name === username;
+  });
 
   const onSearch = (event) => {
     let str = event === undefined ? "" : event.target.value;
@@ -79,7 +98,6 @@ export default function Ranking() {
   };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-    console.log("username in rank: "+username)
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -87,17 +105,11 @@ export default function Ranking() {
     setPage(0);
   };
 
-  
   return (
-
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" style={{ background: "#2E3B55" }}>
           <Toolbar>
-          <a onClick={() => {
-             window.open("/homepage", "_self") 
-             window.close();
-                }}><i class="fas fa-arrow-circle-left"></i></a>
             <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>
               Obstacle Crossed
             </Typography>
@@ -128,34 +140,14 @@ export default function Ranking() {
               onClose={handleClose}
               onClick={handleClose}
             >
-              <MenuItem>
-                <ListItemIcon>
-                  <AccountCircle fontSize="small" />
-                </ListItemIcon>
-                Profile
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <Settings fontSize="small" />
-                </ListItemIcon>
-                Settings
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
+              <MenuItem>Profile</MenuItem>
+              <MenuItem>Settings</MenuItem>
+              <MenuItem>Logout</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
       </Box>
-      <Typography
-        my={2}
-        variant="h5"
-        color="inherit"
-        style={{ textAlign: "center" }}
-      >
+      <Typography my={2} variant="h5" style={{ textAlign: "center" }}>
         LEADERBOARD
       </Typography>
       <Toolbar>
@@ -169,11 +161,32 @@ export default function Ranking() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ fontWeight: "bold", minWidth: column.minWidth }}
                 >
                   {column.label}
                 </TableCell>
               ))}
+            </TableRow>
+
+            <TableRow>
+              <TableCell
+                align="center"
+                style={{ top: 57, backgroundColor: "skyblue" }}
+              >
+                YOU #{your_rank.no}
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ top: 57, backgroundColor: "skyblue" }}
+              >
+                {your_rank.name}
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ top: 57, backgroundColor: "skyblue" }}
+              >
+                {your_rank.score}
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -10,10 +10,11 @@
 
   color:black;
   padding-top:10px ;
-  min-height: 110px;
+  min-height: 80px;
   border-bottom: #170055 3px solid;
   font-size: 20px;
   align-items: center;
+
 }
 
 .container-nav-pu h1{
@@ -41,7 +42,9 @@ margin-left: 70px;
 }
 .profile-user-title {
   font-size: 2rem;
-  color: white;
+  color: #DFFFFD;
+  margin-left: 40px;
+  margin-top: 10px;
 }
 
 .container-image-pu {
@@ -150,7 +153,9 @@ input:focus{
   border: 4px solid aqua;
 
 }
-
+.save_cancel-pu{
+  margin-top: 40px;
+}
 
 .save_cancel-pu button{
 
@@ -177,4 +182,8 @@ background-color: #DFFFFD;
 
 .branding {
   display: flex;
+}
+.branding i{
+  color: #fff;
+  padding: 20px;
 }

@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../Authentication/UserContext"
 import './Profile_user.css';
 
+
 const App_user = () => {
-    const { username, role } = useContext(UserContext) 
+    const { username } = useContext(UserContext) 
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
 
@@ -71,8 +72,8 @@ const App_user = () => {
                 </div>
                 <div className="box-pu">
 
-                    <label for="nickname">nickname :</label>
-                    <input id="nickname" type="text" name="" value="btn2021" /><br /><br />
+                    <label for="nickname">username :</label>
+                    <input id="nickname" type="text" name="" value={username} /><br /><br />
 
                     <label for="mail">mail :</label>
                     <input id="mail" type="Email" name="" value="btn@gmail.com" /><br /><br />

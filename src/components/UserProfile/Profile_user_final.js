@@ -31,14 +31,8 @@ export default function Profile_user_final() {
     const moveDot = index => {
         setSlideIndex(index)
     }
-
-
-
-
     return (
         <>
-
-
             <div className="AppUser-sd">
                 <App_user />
                 <div className="container-slider">
