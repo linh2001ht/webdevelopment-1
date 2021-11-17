@@ -13,6 +13,7 @@ import { UserContext } from './Authentication/UserContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllUser } from '../services/userService';
+import Appi from "../Profile_manager"
 
 const columns = [
     { id: 'no', label: 'ID User', minWidth: 50 },
@@ -38,10 +39,10 @@ const DetailButton = ({userID}) => {
                 className="detail-button" 
                 onClick={ async () => {
                     let res = await getAllUser(userID)
-                    console.log("userID", userID)
-                    console.log("res: " + res.users.id)
+
                     
-                    history.push("/managerprofile")
+                    // history.push("/managerprofile")
+                    
                 }}
             >Detail</button>
 }
