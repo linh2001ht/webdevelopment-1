@@ -2,10 +2,16 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "./Authentication/UserContext";
 import "./Game.css";
 import { Link } from "react-router-dom";
+import { editUserService } from "../services/userService"
 
 
 
 const zeroPad = (num, places) => String(num).padStart(places, "0");
+
+const saveScore = (score) => {
+  setHScore(score);
+  console.log("Saved score: ", score)
+} 
 
 export default function Game() {
   const { username } = useContext(UserContext)
@@ -71,6 +77,7 @@ export default function Game() {
         charY >= 280 + 2 * Math.abs(150 - x)
       ) {
         setStarted(false);
+        saveScore(score)
       }
     });
   }
@@ -295,7 +302,7 @@ export default function Game() {
         hitGP();
         setScore(score + 0.1);
       } else {
-        if (score >= HScore) setHScore(score);
+        if (score >= HScore) saveScore(score) 
       }
     }, 1000 / fps );
 
