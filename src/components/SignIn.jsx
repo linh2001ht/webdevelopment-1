@@ -8,69 +8,6 @@ import { Redirect, useHistory } from 'react-router-dom'
 import { UserContext } from "../components/Authentication/UserContext"
 import { handleLoginApi } from "../services/userService"
 
-// function SignIn( { defaultUser,  error, setError, setIsAuth }) {
-
-
-//     let history = useHistory()
-//     const { username, setUsername, password, setPassword } = useContext(UserContext)
-//     const [details, setDetails] = useState({username: "", password: ""}); // TODO thay ở đây để chuyển role
-
-
-//     const Login = (details) => {
-//         let isHas = false;
-//         defaultUser.forEach( (acc) => {
-//           if(details.username === acc.username && details.password === acc.password){
-//             console.log("Logged in successfully!");
-//             setIsAuth(true)
-//             // details.role = acc.role
-//             // setRole(acc.role)
-//             setUsername(details.username)
-//             console.log("username: " + username)
-//             setPassword(details.password)
-//             console.log(username, password)
-//             setError("");
-//             isHas = true;
-//           }
-//         })
-//         if(isHas === true) return true;
-//         else {
-//           console.log("Details do not match!");
-//           setError("Details do not match!");
-//           return false;
-//         }
-//     }
-
-//     async function submitHandler(e) {
-//         e.preventDefault();
-//         var urlencoded = new URLSearchParams();
-//             return fetch('http://localhost:8082/', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-
-//             body: urlencoded
-//             })
-//             .then(data => data.json())
-//             .then(result => {
-//                 console.log("result: " + JSON.stringify(result));
-//                 console.log("detail : " + JSON.stringify(details))
-//                 if(Login(details)) {
-//                     // console.log("detail role: " + details.role)
-//                     localStorage.setItem("accessToken", result.accessToken);
-//                     history.push("/homepage");
-//                 }
-                
-//             })
-//         }
-    
-//     useEffect(() => {
-//         async () => {
-//             await submitHandler();
-//         }
-//     }, [details])
-
-    
 
 //     return (
 //             <div className="sign-in-container">
@@ -135,6 +72,7 @@ function SignIn() {
             if (data && data.errCode === 0) {
                 if(data.user.role == 0) {
                     setUsername(details.username)
+                    console.log("username", username)
                     history.push("/homepage");
                 }
                 else setErr("Username doesn't exist");

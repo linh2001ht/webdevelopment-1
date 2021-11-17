@@ -53,7 +53,7 @@ function HomePageAdmin() {
             </div>
             <div className="play-background">
                 <button className="button-container">
-                    <Link to="/play" className="play-text">PLAY</Link>
+                    <Link to="/playadmin" className="play-text">PLAY</Link>
                 </button>
             </div>
         </div> 

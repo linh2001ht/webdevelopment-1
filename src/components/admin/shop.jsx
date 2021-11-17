@@ -13,11 +13,7 @@ function ShopAdmin()  {
         {/* {console.log("role in shop: " + role)} */}
             <div class="bar">
                 <div class="nar">
-                {/* thay 0 thành 1, đổi thứ tự, tương tự với page ranking */}
-                <a onClick={() => {
-                        window.open("/homepagemanager", "_self")
-                        window.close();
-                }}><i class="fas fa-arrow-circle-left"></i></a>
+                
                     <span class="titlegame">Obstacles Crossed</span>
                 </div>
             </div>

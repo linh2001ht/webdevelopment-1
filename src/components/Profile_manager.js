@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Profile_manager.css";
 
-const Appi = () => {
+const Appi = ({profile}) => {
     let history = useHistory();
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
+
+    const [userProfile, setUserProfile ] = useState(profile)
+    const handleClick = async () => {
+        let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
+        console.log("update", update)
+        alert("Update succeed! Please login again!")
+        // window.open("/", "_self");
+        // window.close();
+    }
 
     const handleImageChange = (e) => {
         setError(false);
@@ -71,42 +80,28 @@ const Appi = () => {
                 </div>
                 <div className="box-pm">
 
-                    <label for="nickname">nickname :</label>
-                    <input id="nickname" type="text" name="" value="btn2021" /><br /><br />
+                <label >username :</label>
+                    <input id="username" type="text" name="username" value={userProfile.username} onChange={(event) => setUserProfile({...userProfile, username: event.target.value})} /><br /><br />
 
                     <label for="mail">mail :</label>
-                    <input id="mail" type="Email" name="" value="btn@gmail.com" /><br /><br />
-
-                    <label for="name">name :</label>
-                    <input id="name" type="text" name="" value="Best Team Name" /><br /><br />
+                    <input id="mail" type="email" name="email" value={userProfile.email} onChange={(event) => setUserProfile({...userProfile, email: event.target.value})}   /><br /><br />
 
                     <label for="sex">sex :</label>
-                    <select id="sex" name="sex">
-                        <option value="male">male</option>
-                        <option value="female">female</option>
-                        <option value="other">other</option>
-
+                    <select id="sex" name="sex" value={userProfile.gender}  onChange={(event) => setUserProfile({...userProfile, gender: event.target.value})} >
+                        <option value={0}>female</option>
+                        <option value={1}>male</option>
                     </select><br /><br />
 
                     <label for="age">age :</label>
-                    <input id="age" type="number" name="" min="6" max="100" /><br /><br />
+                    <input id="age" type="number" name="age" min="6" max="100" value={parseInt(userProfile.age)}  onChange={(event) => setUserProfile({...userProfile, age: event.target.value})} /><br /><br />
 
 
-                    <label for="nationality">nationality :</label>
-                    <select id="nationality" name="nationality">
-                        <option value="Vietnam">Vietnam</option>
-                        <option value="Japan">Japan</option>
-                        <option value="South Korea">South Korea</option>
-                        <option value="US">US</option>
-                        <option value="China">China</option>
-                        <option value="other">other</option>
-                    </select><br /><br />
 
                 </div>
                 <div className="save_cancel-pm">
                     <button id="cancel" onClick={() => history.push("/homepagemanager")} name="cancel">cancel</button>
 
-                    <button id="done" name="done">save</button>
+                    <button id="done" onClick={handleClick}>save</button>
                 </div>
 
             </div>

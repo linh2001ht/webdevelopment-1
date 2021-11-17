@@ -13,6 +13,7 @@ import { UserContext } from './Authentication/UserContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllUser } from '../services/userService';
+import Appi from "../Profile_manager"
 
 const columns = [
     { id: 'no', label: 'ID User', minWidth: 50 },
@@ -26,14 +27,22 @@ const createData = (no, username, email, detail) => {
 
 
 const DetailButton = ({userID}) => {
+    const [ profile, setProfile ] = useState({
+        username: "",
+        email: "",
+        sex: "",
+        age: 1
+    });
     let history = useHistory()
     // khi kích vào nút này -> dựa vào userID để hiện thị lên cái profile của người đó 
     return <button 
                 className="detail-button" 
                 onClick={ async () => {
                     let res = await getAllUser(userID)
-                    console.log("res: " + res.users.id)
-                    history.push("/managerprofile")
+
+                    
+                    // history.push("/managerprofile")
+                    
                 }}
             >Detail</button>
 }
@@ -56,13 +65,14 @@ function DataTable() {
         if(response && response.errCode === 0) {
             const data = response.users
             if(isDone === false) {
+                console.log("run")
                 data.forEach( (item) => {
-                    // console.log(item)
                     if(item.role===0)
                         rows.push(createData(item.id, item.username, item.email, <DetailButton userID={item.id} />))
                 })
                 isDone = true
                 setRow(rows)
+                // return;
             } else {
                 return;
             }
