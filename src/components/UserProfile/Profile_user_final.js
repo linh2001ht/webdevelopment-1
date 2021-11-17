@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './Profile_user_final.css';
 import BtnSlider from './BtnSlider'
 import dataSlider from './dataSlider'
 import App_user from './Profile_user'
-
 
 export default function Profile_user_final() {
 

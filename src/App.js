@@ -27,16 +27,25 @@ import SignInAdmin from './components/admin/SignInAdmin';
 import RankAdmin from './components/admin/rank';
 import ShopAdmin from './components/admin/shop';
 import GameAdmin from './components/admin/game';
+import UserRank from './components/pages/UserRank'
 
 function App() {
 
   // const auth = useAuth();
   const [ username, setUsername ] = useState(null)
+  const [ highScore, setHighScore ] = useState(-1)
+  const [ userID, setUserID ] = useState(-1)
   const [ error, setError ] = useState(null)
   const [ isAuth, setIsAuth ] = useState(false)
-  const value = useMemo(() => ({ isAuth, username, setUsername }), [ username, setUsername ]);
+  const [ profile, setProfile ] = useState({
+    username: "",
+    email: "",
+    sex: "",
+    age: 1
+});
+  const value = useMemo(() => ({ isAuth, username, setUsername, userID, setUserID, highScore, setHighScore, profile, setProfile }),
+   [ username, setUsername, userID, highScore, setHighScore, profile, setProfile ]);
 
-  
   return (
     <ProvideAuth>
       <Router>
@@ -65,7 +74,7 @@ function App() {
               <Route exact path="/homepage" component={HomePage} isAuth={isAuth} />
               <Route exact path="/userprofile" component={Profile_user_final} isAuth={isAuth} />
               <Route exact path="/shop" component={Shop} isAuth={isAuth} /> 
-              <Route exact path="/rank" component={Ranking} isAuth={isAuth}/>
+              <Route exact path="/rank" component={UserRank} isAuth={isAuth}/>
               <Route exact path="/play" component={Game} isAuth={isAuth} />
 
               {/* Admin */}
