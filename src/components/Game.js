@@ -294,7 +294,7 @@ export default function Game() {
         setScore(score + 0.1);
       } else {
         if (score >= HScore) {
-          setHScore(score)
+          setHScore(Math.floor(score))
         }
       }
     }, 1000 / fps );
@@ -306,6 +306,7 @@ export default function Game() {
 
 
   return (
+    <div style = {{height:"100vh", overflow: "hidden"}}>
     <div className="game">
       <div
         style={{
@@ -319,7 +320,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 860
+            right: 830
           }}
         >
           {zeroPad(swords, 2)}
@@ -329,7 +330,7 @@ export default function Game() {
           style={{
             top: 5,
             position: "relative",
-            right: 795
+            right: 765
           }}
         >
           {zeroPad(shurikens, 2)}
@@ -339,7 +340,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 725
+            right: 705
           }}
         >
           {zeroPad(bombs, 2)}
@@ -349,7 +350,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 655
+            right: 640
           }}
         >
           {zeroPad(portals, 2)}
@@ -470,6 +471,7 @@ export default function Game() {
         {portalIn && <div className="portalIn" />}
         {portalOut && <div className="portalOut" />}
       </div>
+    </div>
     </div>
   );
 }
