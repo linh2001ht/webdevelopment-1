@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import "../Shop.css";
 import LockImage from "../../assets/images/Locker.png";
 import { UserContext } from "../Authentication/UserContext";
+import NavigationBar from "../navigationBar";
 
 function ShopAdmin()  {
 
@@ -11,12 +12,7 @@ function ShopAdmin()  {
         
         <div>
         {/* {console.log("role in shop: " + role)} */}
-            <div class="bar">
-                <div class="nar">
-                
-                    <span class="titlegame">Obstacles Crossed</span>
-                </div>
-            </div>
+            <NavigationBar />
 
             <div class="character"></div>
             <label>{username}</label>

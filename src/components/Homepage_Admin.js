@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Navbar, Container, NavLink, Nav } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 import { UserContext } from './Authentication/UserContext'
-
 function HomePageAdmin() {
     const { username } = useContext(UserContext);
     let history = useHistory()
@@ -10,7 +9,10 @@ function HomePageAdmin() {
         return (
           <style jsx>{`
             .myTitle {
-                color: #C89595;
+                padding: 15px 0px;
+                color:#dffffd;
+                font-size:2rem;
+                font-weight: bold;  
             }
             .nav {
                 margin-left: 20%;
@@ -20,6 +22,7 @@ function HomePageAdmin() {
             .navlink {
                 color: #FFF;
                 margin: 0% 5%;
+                text-decoration: none;
             }
             .logout {
                 color: #FFF;
@@ -31,9 +34,9 @@ function HomePageAdmin() {
     return (
         <div className="sample">
         {style()}
-            <Navbar bg="myBg" expand="lg" variant="dark">
+            <Navbar bg="myBg" expand="sm" variant="dark">
                 <Container>
-                    <Navbar.Brand className="myTitle" href="#home">Obstacle Crossed</Navbar.Brand>
+                    <Navbar.Brand className="myTitle" href="/homepage">Obstacle Crossed</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <div className="nav">

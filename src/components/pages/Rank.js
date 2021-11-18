@@ -22,6 +22,7 @@ import {
   Typography
 } from "@mui/material";
 import { AccountCircle, Settings, Logout } from "@mui/icons-material";
+import NavigationBar from "../navigationBar"
 
 const columns = [
   { id: "no", label: "Rank No.", minWidth: 70, align: "center" },
@@ -92,60 +93,7 @@ export default function Ranking() {
 
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ background: "#2E3B55" }}>
-          <Toolbar>
-          
-            <Typography color="white" variant="h6" sx={{ flexGrow: 1 }}>
-              Obstacle Crossed
-            </Typography>
-            <IconButton
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <Avatar>A</Avatar>
-              <Typography m color="white">
-                {username}
-              </Typography>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right"
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right"
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              onClick={handleClose}
-            >
-              <MenuItem>
-                <ListItemIcon>
-                  <AccountCircle fontSize="small" />
-                </ListItemIcon>
-                Profile
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <Settings fontSize="small" />
-                </ListItemIcon>
-                Settings
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
-          </Toolbar>
-        </AppBar>
+      <NavigationBar />
       </Box>
       <Typography
         my={2}

@@ -49,10 +49,14 @@ function HomePage() {
     const style = () => {
         return (
           <style jsx>{`
+            .navContainer {
+                height: 70px;
+            }
             .myTitle {
+                padding: 15px 0px;
                 color:#dffffd;
                 font-size:2rem;
-
+                font-weight: bold;  
                 
             }
             .nav {
@@ -63,6 +67,7 @@ function HomePage() {
             .navlink {
                 color: #dffffd;
                 margin: 0% 10%;
+                text-decoration: none;
             }
             .logout {
                 color: #dffffd;
@@ -74,8 +79,7 @@ function HomePage() {
     return (
         <div className="sample">
         {style()}
-        {/* {getUser(username)} */}
-            <Navbar bg="myBg" expand="lg" variant="dark">
+            <Navbar className="navContainer" bg="myBg" expand="md" variant="dark">
                 <Container>
                     <Navbar.Brand className="myTitle" href="/homepage">Obstacle Crossed</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -88,6 +92,7 @@ function HomePage() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+
 
             <div className="home-picture-container">
                 <div className="pic">

@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import "./Shop.css";
 import LockImage from "../assets/images/Locker.png";
 import { UserContext } from "./Authentication/UserContext";
-
+import NavigationBar from "./navigationBar"
 const Shop = () => {
 
     const { username } = useContext(UserContext)
@@ -10,18 +10,7 @@ const Shop = () => {
     return(
     
         <div>
-        {console.log("username in shop : " + username)}
-            <div class="bar">
-                <div class="nar">
-                {/* thay 0 thành 1, đổi thứ tự, tương tự với page ranking */}
-                <a onClick={() => {
-                    window.open("/homepage", "_self") 
-                    window.close();
-                }}><i class="fas fa-arrow-circle-left"></i></a>
-                    <span class="titlegame">Obstacles Crossed</span>
-                </div>
-            </div>
-
+            <NavigationBar />
             <div class="character"></div>
             <label>{username}</label>
             <div class="shop">

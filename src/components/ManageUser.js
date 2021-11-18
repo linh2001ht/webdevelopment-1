@@ -1,20 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Nav } from 'react-bootstrap';
 import "../App.css"
 import DataTable from './createTable';
+import Appi from "./Profile_manager"
+import NavigationBar from "./navigationBar"
 
 function ManageUser() {
+    const [ userID, setUserID ]  = useState(0)
+    const [ state, setState ] = useState('start')
+    const [ profile, setProfile ] = useState({
+        username: "",
+        email: "",
+        sex: "",
+        age: 1
+    });
+    const a = []
+
     return (
         <div>
-            <Nav className="manage-user-navbar">
-                <a className="mu-back-button" onClick={() => {
-                        window.open("/homepagemanager", "_self");
-                        window.close();
-                }}><i class="fas fa-arrow-circle-left"></i></a>
-                <p className="mu-navbrand">Obstacle Crossed</p>
-            </Nav>
-            <p className="list-users">List of users</p>
-            <DataTable />
+        {state === 'start' && (
+            <>
+                <NavigationBar />
+                <p className="list-users">List of users</p>
+                <DataTable state={state} setState={setState} profile={profile} setProfile={setProfile} userID={userID} setUserID={setUserID}/>
+            </>
+        )}
+        {state === 'change-page' && <Appi profile={profile} setState={setState} userID={userID} setUserID={setUserID} />}
+
 
         </div>
     );

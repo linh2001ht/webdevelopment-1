@@ -13,7 +13,8 @@ import { UserContext } from './Authentication/UserContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllUser } from '../services/userService';
-import Appi from "../Profile_manager"
+import Appi from "./Profile_manager"
+import { render } from 'react-dom';
 
 const columns = [
     { id: 'no', label: 'ID User', minWidth: 50 },
@@ -26,60 +27,66 @@ const createData = (no, username, email, detail) => {
 }
 
 
-const DetailButton = ({userID}) => {
-    const [ profile, setProfile ] = useState({
-        username: "",
-        email: "",
-        sex: "",
-        age: 1
-    });
-    let history = useHistory()
-    // khi kích vào nút này -> dựa vào userID để hiện thị lên cái profile của người đó 
-    return <button 
-                className="detail-button" 
-                onClick={ async () => {
-                    let res = await getAllUser(userID)
 
-                    
-                    // history.push("/managerprofile")
-                    
-                }}
-            >Detail</button>
-}
 
 var isDone = false
 const rows = []
 
 
-function DataTable() {
+const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) => {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const { username, password } = useContext(UserContext);
+    const [ arr, setArr ] = useState([])
+    const a = []
     let history = useHistory();
-
-    const [row, setRow] = useState([])
     
+    const [row, setRow] = useState([])
+    const DetailButton = ({userId}) => {
+        
+        let history = useHistory()
+        return <button 
+                    className="detail-button" 
+                    onClick={ async () => {
+                        let res = await getAllUser(userId)
+                        setUserID(userId)
+                        console.log("userId", userId)
+                        setProfile(res.users)
+                        console.log("res.users", res.users)
+                        setState("change-page")
+                        a.push(1)
+                        setArr(a)
+                    }}
+        >Detail</button>
+        
+    }
     const getData = async () => {
         let response = await getAllUser("ALL")
         if(response && response.errCode === 0) {
             const data = response.users
             if(isDone === false) {
-                console.log("run")
                 data.forEach( (item) => {
                     if(item.role===0)
-                        rows.push(createData(item.id, item.username, item.email, <DetailButton userID={item.id} />))
+                        rows.push(createData(item.id, item.username, item.email, <DetailButton userId={item.id} />))
                 })
                 isDone = true
                 setRow(rows)
+                console.log("get data")
                 // return;
             } else {
                 return;
             }
         }
     }
+    useEffect(() => {
+        console.log("run???")
+        getData()
+    }, [arr])
+    
+    
 
-    getData()
+    // getData()
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);

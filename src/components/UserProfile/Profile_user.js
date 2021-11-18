@@ -3,6 +3,7 @@ import { UserContext } from "../Authentication/UserContext"
 import './Profile_user.css';
 import {getAllUser, editUserService} from "../../services/userService"
 import { useHistory } from "react-router-dom";
+import NavigationBar from "../navigationBar";
 
 var isGet = false
 
@@ -13,18 +14,19 @@ const App_user = () => {
     const [ userProfile, setUserProfile ] = useState(profile)
     let history = useHistory()
     console.log("user profile",userProfile)
-
+    
 
     const handleClick = async () => {
         let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
         console.log("update", update)
+        
         alert("Update succeed! Please login again!")
         window.open("/", "_self");
         window.close();
         
 
     }
-
+    
     const handleImageChange = (e) => {
         setError(false);
         const selected = e.target.files[0];
@@ -42,15 +44,9 @@ const App_user = () => {
     
     return (
         <>
-            <div className="container-nav-pu">
-                <div className="branding">
-                <p className="profile-user-title">Obstacles Crossed</p>
-                </div>
-
-            </div>
-
+            <NavigationBar />
             <div className="userprofile">
-                <h1>{userID} and {username}</h1>
+                <h1>User profile</h1>
             </div>
 
             <div className="App-pu">

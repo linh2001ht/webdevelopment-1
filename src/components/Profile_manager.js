@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Profile_manager.css";
+import { editUserService, getAllUser } from "../services/userService";
+import NavigationBar from "./navigationBar";
 
-const Appi = ({profile}) => {
+const Appi = ({profile, setState, userID, setUserID, a}) => {
     let history = useHistory();
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
-
     const [userProfile, setUserProfile ] = useState(profile)
+    const [ arr, setArr ] = useState([])
     const handleClick = async () => {
+        a.push(1)
+        setArr(a)
         let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
         console.log("update", update)
-        alert("Update succeed! Please login again!")
-        // window.open("/", "_self");
-        // window.close();
+        setState('start')
+    }
+    useEffect(() => {
+        setData()
+    }, [arr])
+    
+    const setData = async () => {
+        let response = await getAllUser(userID)
+        let res = response.users
+        let obj = {
+            username: res.username,
+            email: res.email,
+            gender: res.gender,
+            age: res.age
+        }
+        setUserProfile(obj)
     }
 
     const handleImageChange = (e) => {
@@ -31,21 +48,13 @@ const Appi = ({profile}) => {
         }
     };
 
+
     return (
         <>
-            <div className="container-nav-pm">
-            <a onClick={() => {
-                        window.open("/manageusers", "_self");
-                        window.close();
-                }}><i class="fas fa-arrow-circle-left"></i></a>
-                <div id="branding">
-                    <h1>Obstacles Crossed</h1>
-                </div>
-
-            </div>
+            <NavigationBar />
 
             <div className="userprofile-pm">
-                <h1>user profile</h1>
+                <h1>{userProfile.username} profile</h1>
             </div>
 
             <div className="App-pm">
@@ -99,7 +108,7 @@ const Appi = ({profile}) => {
 
                 </div>
                 <div className="save_cancel-pm">
-                    <button id="cancel" onClick={() => history.push("/homepagemanager")} name="cancel">cancel</button>
+                    <button id="cancel" onClick={() => setState('start')} name="cancel">cancel</button>
 
                     <button id="done" onClick={handleClick}>save</button>
                 </div>
