@@ -1,4 +1,7 @@
 import * as React from "react";
+import { getAllUser } from "../../services/userService"
+import { UserContext } from "../Authentication/UserContext"
+import { useContext } from "react";
 import {
   AppBar,
   Avatar,
@@ -30,8 +33,8 @@ const columns = [
     format: (value) => value.toLocaleString("en-US")
   },
   {
-    id: "name",
-    label: "Name",
+    id: "username",
+    label: "Username",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US")
@@ -44,6 +47,13 @@ const columns = [
     format: (value) => value.toLocaleString("en-US")
   }
 ];
+
+const createData = (no, username, score) => {
+  return {no, username, score};
+}
+
+const rows = []
+var isDone = false 
 
 const DefaultRows = [
   { no: 1, name: "Player 1", score: 100 },
@@ -68,26 +78,57 @@ const DefaultRows = [
   { no: 20, name: "Player 10", score: 65 }
 ];
 
-const username = "Player 8";
 
 export default function UserRank() {
-  const [rows, setRows] = React.useState(DefaultRows);
+
+  console.log("render")
+
+  const { username, userID, profile, setUsername, setProfile, highScore, setHighScore } = useContext(UserContext)
+  const [row, setRow] = React.useState([]);
   const [searched, setSearched] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const your_rank = DefaultRows.find((row) => {
-    return row.name === username;
-  });
+  
+
+  const getData = async () => {
+    let response = await getAllUser("ALL")
+    if(response && response.errCode === 0) {
+        const data = response.users
+        if(isDone === false) {
+            console.log("run")
+            data.forEach((item, index) => {
+                if(item.role===0)
+                    rows.push(createData(index, item.username, item.score))
+            })
+            isDone = true
+            setRow(rows)
+            // return;
+        } else {
+            return;
+        }
+    }
+  }
+
+    getData()
+
+    console.log(row)
+
+    // let your_rank = row.find((r) => {
+    //   return r.username === username;
+    // });
+
+    const your_rank = { no: 1, username: "player11", score: 96 }
+
 
   const onSearch = (event) => {
     let str = event === undefined ? "" : event.target.value;
     setSearched(str);
-    const filteredRows = DefaultRows.filter((row) => {
-      return row.name.toLowerCase().includes(str.toLowerCase());
+    const filteredRows = row.filter((r) => {
+      return r.username.toLowerCase().includes(str.toLowerCase());
     });
-    setRows(filteredRows);
+    setRow(filteredRows);
   };
 
   const handleMenu = (event) => {
@@ -102,6 +143,8 @@ export default function UserRank() {
   };
 
   const handleChangeRowsPerPage = (event) => {
+    console.log("BEFORe onserach", row)
+
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -143,7 +186,7 @@ export default function UserRank() {
                 align="center"
                 style={{ top: 57, backgroundColor: "skyblue" }}
               >
-                {your_rank.name}
+                {your_rank.username}
               </TableCell>
               <TableCell
                 align="center"
@@ -153,14 +196,17 @@ export default function UserRank() {
               </TableCell>
             </TableRow>
           </TableHead>
+
+          {console.log("HAHAHA", row)}
+
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((r) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={r.code}>
                     {columns.map((column) => {
-                      const value = row[column.id];
+                      const value = r[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof value === "number"

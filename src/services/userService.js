@@ -14,5 +14,5 @@ const getAllUser = (inputId) => {
 const editUserService = (inputData) => {
     return axios.put("/api/edit-user", inputData)
 }
-export { handleLoginApi, createNewUserService, getAllUser,editUserService }
+export { handleLoginApi, createNewUserService, getAllUser, editUserService }
 // export { handleLoginApi, createNewUserService}

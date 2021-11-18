@@ -7,7 +7,7 @@ import { getAllUser } from "../services/userService"
 
 var isRun = false
 function HomePage() {
-    const { username, setUsername, userID, setUserID, profile, setProfile } = useContext(UserContext);
+    const { username, setUsername, userID, setUserID, profile, setProfile, highScore, setHighScore } = useContext(UserContext);
     const [ user, setUser ] = useState({})
     let history = useHistory()
     const getUser = async (username) => {
@@ -31,6 +31,7 @@ function HomePage() {
                         obj.gender = item.gender
                         obj.age = item.age
                         setProfile(obj)
+                        setHighScore(item.score)
                         console.log("profile", profile)
                         return item
                     }

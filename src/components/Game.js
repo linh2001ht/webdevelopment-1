@@ -1,21 +1,134 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { UserContext } from "./Authentication/UserContext";
-import "./game.css";
+import "./Game.css";
 import { Link } from "react-router-dom";
+import { editUserService } from "../services/userService"
+import { getAllUser } from '../services/userService';
 
 
 
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 
+
+// const getUserScore = async (idUser) => {
+//   let response = await getAllUser(idUser)
+//   if(response && response.errCode === 0) {
+//     console.log("User score", response.users.score)
+//     return response.users.score
+//   } else {
+//     console.log("HAHAHA")
+//     return;
+//   }
+// }
+
+
+
 export default function Game() {
-  const { username } = useContext(UserContext)
+
+  const updateScore = async (userID, scor) => {
+    console.log("Saved score: ", Math.floor(scor))
+    try {
+      let update = await editUserService({id: userID, score: Math.floor(scor)})
+      console.log("update", update)
+      console.log("update diem thanh cong")
+
+    } catch {
+      console.log("Luu diem that bai")
+    }
+  }
+
+  // const updateScode = useMemo(async () => {
+  //   // setHScore(score);
+  //   console.log("Saved score: ", score)
+  //   try {
+  //     let update = await editUserService({id: userId, score: score})
+  //     console.log("update diem thanh cong")
+  //   } catch {
+  //     console.log("Luu diem that bai")
+  //   }
+  // }, HScore)
+  // const saveScore = async (userId, score) => {
+  //   setHScore(score);
+  //   console.log("Saved score: ", score)
+  //   try {
+  //     let update = await editUserService({id: userId, score: score})
+  //     console.log("update diem thanh cong")
+  //   } catch {
+  //     console.log("Luu diem that bai")
+  //   }
+  // } 
+
+
+
+  const { username, userID, profile, setUsername, setProfile, highScore, setHighScore } = useContext(UserContext)
   const fps = 60;
   const [start, setStart] = useState(false);
   const [started, setStarted] = useState(false);
   const [score, setScore] = useState(0);
-  const [HScore, setHScore] = useState(0);
+  const [HScore, setHScore] = useState(highScore);
   const [stoneX, setStoneX] = useState([]);
   const [itemX, setItemX] = useState(-30);
+  
+
+  useEffect(() => {
+    console.log("mesage from usesEfect")
+    if(score >= HScore) {
+      setHighScore(score)
+    }
+  }, [stoneX])
+
+  // const getUserScore = () => {
+  //   let response = await getAllUser(userID)
+  //   if(response && response.errCode === 0) {
+  //     console.log("User score", response.users.score)
+  //     console.log("USER ID", userID)
+  //     return Number(response.users.score)
+  //   } else {
+  //     console.log("HAHAHA")
+  //     return;
+  //   }
+  // }
+  
+  
+  // console.log("hah user score", getUserScore(userID))
+  // typeof(99)
+  // console.log("KAAKAKAKAK", getData(userID))
+  // console.log("IDDDD", userID)
+  // getData(userID)
+
+
+  // const [swords, setSwords] = useState(0);
+  // const [shurikens, setShurikens] = useState(0);
+  // const [booms, setBooms] = useState(0);
+  // const [portals, setPortals] = useState(0);
+  // const [charY, setCharY] = useState(380);
+  // const [jump, setJump] = useState(false);
+  // const handleKeyPress = (e) => {
+  //   switch (e.keyCode) {
+  //     case 32:
+  //       if (!started && !start) {
+  //         setStart(true);
+  //       }
+  //       if (!jump && charY === 380) {
+  //         setJump(true);
+  //       }
+  //       break;
+  //     case 49:
+  //       if (swords) setSwords(swords - 1);
+  //       break;
+  //     case 50:
+  //       if (shurikens) setShurikens(shurikens - 1);
+  //       break;
+  //     case 51:
+  //       if (booms) setBooms(booms - 1);
+  //       break;
+  //     case 52:
+  //       if (portals) setBooms(portals - 1);
+  //       break;
+  //     default:
+  //   }
+  // };
+// =======
   const [giftX, setGiftX] = useState(-100);
   const [sword, setSword] = useState(false);
   const [shuriken, setShuriken] = useState([]);
@@ -39,6 +152,7 @@ export default function Game() {
         charY >= 280 + 2 * Math.abs(150 - x)
       ) {
         setStarted(false);
+        updateScore(userID, score)
       }
     });
   }
@@ -263,12 +377,17 @@ export default function Game() {
         hitGP();
         setScore(score + 0.1);
       } else {
-        if (score >= HScore) setHScore(score);
+        if (score >= HScore) {
+          setHScore(score)
+        }
       }
     }, 1000 / fps );
 
     return () => clearInterval(id);
   }, [score, start, jump]);
+
+
+
 
   return (
     <div className="game">
@@ -395,7 +514,6 @@ export default function Game() {
           left: 850
         }}
       />
-
       <div
         style={{
           position: "relative"
