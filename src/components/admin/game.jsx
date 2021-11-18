@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const zeroPad = (num, places) => String(num).padStart(places, "0");
 
-export default function GameAdmin() {
+export default function Game() {
   const { username } = useContext(UserContext)
   const fps = 60;
   const [start, setStart] = useState(false);
@@ -16,48 +16,16 @@ export default function GameAdmin() {
   const [HScore, setHScore] = useState(0);
   const [stoneX, setStoneX] = useState([]);
   const [itemX, setItemX] = useState(-30);
-  // const [swords, setSwords] = useState(0);
-  // const [shurikens, setShurikens] = useState(0);
-  // const [booms, setBooms] = useState(0);
-  // const [portals, setPortals] = useState(0);
-  // const [charY, setCharY] = useState(380);
-  // const [jump, setJump] = useState(false);
-  // const handleKeyPress = (e) => {
-  //   switch (e.keyCode) {
-  //     case 32:
-  //       if (!started && !start) {
-  //         setStart(true);
-  //       }
-  //       if (!jump && charY === 380) {
-  //         setJump(true);
-  //       }
-  //       break;
-  //     case 49:
-  //       if (swords) setSwords(swords - 1);
-  //       break;
-  //     case 50:
-  //       if (shurikens) setShurikens(shurikens - 1);
-  //       break;
-  //     case 51:
-  //       if (booms) setBooms(booms - 1);
-  //       break;
-  //     case 52:
-  //       if (portals) setBooms(portals - 1);
-  //       break;
-  //     default:
-  //   }
-  // };
-// =======
   const [giftX, setGiftX] = useState(-100);
   const [sword, setSword] = useState(false);
   const [shuriken, setShuriken] = useState([]);
   const [bomb, setBomb] = useState([]);
   const [portalIn, setPortalIn] = useState(false);
   const [portalOut, setPortalOut] = useState(false);
-  const [swords, setSwords] = useState(0);
-  const [shurikens, setShurikens] = useState(0);
-  const [bombs, setBombs] = useState(0);
-  const [portals, setPortals] = useState(0);
+  const [swords, setSwords] = useState(5);
+  const [shurikens, setShurikens] = useState(5);
+  const [bombs, setBombs] = useState(5);
+  const [portals, setPortals] = useState(5);
   const [charY, setCharY] = useState(380);
   const [charO, setCharO] = useState(1);
   const [jump, setJump] = useState(false);
@@ -316,37 +284,37 @@ export default function GameAdmin() {
           style={{
             position: "relative",
             top: 5,
-            right: 830
+            right: 860
           }}
         >
           {zeroPad(swords, 2)}
         </span>
-        <span className="shuriken" style={{ left: 150 }} />
+        <span className="shurikens" style={{ left: 150 }} />
         <span
           style={{
             top: 5,
             position: "relative",
-            right: 770
+            right: 795
           }}
         >
           {zeroPad(shurikens, 2)}
         </span>
-        <span className="boom" style={{ left: 250 }} />
+        <span className="bombs" style={{ left: 250 }} />
         <span
           style={{
             position: "relative",
             top: 5,
-            right: 710
+            right: 725
           }}
         >
           {zeroPad(bombs, 2)}
         </span>
-        <span className="portal" style={{ left: 350 }} />
+        <span className="portals" style={{ left: 350 }} />
         <span
           style={{
             position: "relative",
             top: 5,
-            right: 645
+            right: 655
           }}
         >
           {zeroPad(portals, 2)}
