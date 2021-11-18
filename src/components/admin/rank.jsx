@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useContext } from "react";
 import { UserContext } from "../Authentication/UserContext";
+import { getAllUser } from "../../services/userService"
 import {
   AppBar,
   Avatar,
@@ -25,9 +26,11 @@ import { AccountCircle, Settings, Logout } from "@mui/icons-material";
 import { withRouter } from "react-router-dom";
 const columns = [
   { id: "no", label: "Rank No.", minWidth: 70, align: "center" },
-  { id: "name", label: "Name", minWidth: 170, align: "center" },
+  { id: "username", label: "Username", minWidth: 170, align: "center" },
   { id: "score", label: "Score", minWidth: 100, align: "center" }
 ];
+
+
 
 const DefaultRows = [
   { no: 1, name: "Player 1", score: 100 },
@@ -52,14 +55,45 @@ const DefaultRows = [
   { no: 20, name: "Player 20", score: 64 }
 ];
 
+const rows = []
+var isDone = false
+
+const createData = (no, username, score) => {
+  return {no, username, score};
+}
+
 function RankAdmin({isAuth}) {
   const { username } = useContext(UserContext)
 
-  const [rows, setRows] = React.useState(DefaultRows);
+  const [row, setRow] = React.useState([]);
+  // const [rows, setRows] = React.useState(DefaultRows);
   const [searched, setSearched] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  const getData = async () => {
+    let response = await getAllUser("ALL")
+    if(response && response.errCode === 0) {
+        const data = response.users
+        if(isDone === false) {
+            console.log("run")
+            data.forEach((item, index) => {
+                if(item.role===0)
+                    rows.push(createData(index, item.username, item.score))
+            })
+            isDone = true
+            setRow(rows)
+            // return;
+        } else {
+            return;
+        }
+    }
+  }
+
+    getData()
+
 
   const onSearch = (event) => {
     let str = event === undefined ? "" : event.target.value;

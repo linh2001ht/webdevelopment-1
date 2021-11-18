@@ -13,7 +13,7 @@ import { UserContext } from './Authentication/UserContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllUser } from '../services/userService';
-import Appi from "../Profile_manager"
+import Appi from "./Profile_manager"
 
 const columns = [
     { id: 'no', label: 'ID User', minWidth: 50 },
