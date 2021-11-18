@@ -16,38 +16,6 @@ export default function Game() {
   const [HScore, setHScore] = useState(0);
   const [stoneX, setStoneX] = useState([]);
   const [itemX, setItemX] = useState(-30);
-  // const [swords, setSwords] = useState(0);
-  // const [shurikens, setShurikens] = useState(0);
-  // const [booms, setBooms] = useState(0);
-  // const [portals, setPortals] = useState(0);
-  // const [charY, setCharY] = useState(380);
-  // const [jump, setJump] = useState(false);
-  // const handleKeyPress = (e) => {
-  //   switch (e.keyCode) {
-  //     case 32:
-  //       if (!started && !start) {
-  //         setStart(true);
-  //       }
-  //       if (!jump && charY === 380) {
-  //         setJump(true);
-  //       }
-  //       break;
-  //     case 49:
-  //       if (swords) setSwords(swords - 1);
-  //       break;
-  //     case 50:
-  //       if (shurikens) setShurikens(shurikens - 1);
-  //       break;
-  //     case 51:
-  //       if (booms) setBooms(booms - 1);
-  //       break;
-  //     case 52:
-  //       if (portals) setBooms(portals - 1);
-  //       break;
-  //     default:
-  //   }
-  // };
-// =======
   const [giftX, setGiftX] = useState(-100);
   const [sword, setSword] = useState(false);
   const [shuriken, setShuriken] = useState([]);
