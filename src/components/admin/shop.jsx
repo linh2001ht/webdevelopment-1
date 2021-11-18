@@ -15,7 +15,6 @@ function ShopAdmin()  {
             <NavigationBar />
 
             <div class="character"></div>
-            <label>{username}</label>
             <div class="shop">
             
                     <div class="news_item">

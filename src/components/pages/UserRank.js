@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getAllUser } from "../../services/userService"
 import { UserContext } from "../Authentication/UserContext"
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import {
   AppBar,
   Avatar,
@@ -52,6 +52,11 @@ const createData = (no, username, score) => {
   return {no, username, score};
 }
 
+var obj ={ 
+  no : 1,
+  username: "",
+  score: 2
+}
 const rows = []
 var isDone = false 
 
@@ -89,6 +94,11 @@ export default function UserRank() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [ yourRank, setYourRank] = useState({
+    no: 1,
+    username: username,
+    score : highScore
+  })
 
   
 
@@ -98,9 +108,20 @@ export default function UserRank() {
         const data = response.users
         if(isDone === false) {
             console.log("run")
+            let stt = 0;
             data.forEach((item, index) => {
-                if(item.role===0)
-                    rows.push(createData(index, item.username, item.score))
+                if(item.role===0){
+                  stt = stt+1
+                  rows.push(createData(stt, item.username, item.score))
+                  if(item.username === username) 
+                    obj = {
+                      no : index+1,
+                      username: username,
+                      score: item.score
+                    }
+                  console.log("obj", obj)
+                  setYourRank(obj)
+                  }
             })
             isDone = true
             setRow(rows)
@@ -113,13 +134,30 @@ export default function UserRank() {
 
     getData()
 
-    console.log(row)
+    // console.log(row)
+    // let obj = {
+    //   no: 1,
+    //   username: "",
+    //   score : 1
+    // }
+    
+    // useEffect(() => {
+    //   console.log("rows in useeffect", rows)
+    //   rows.forEach((item, index) => {
+    //     if(item.username === username) {
+    //       obj.no = index
+    //       obj.username = item.username
+    //       obj.score = item.score
+    //     }
+    //   })
+    //   setYourRank(obj)
+    // }, [])
 
-    // let your_rank = row.find((r) => {
+    // your_rank = row.find((r) => {
     //   return r.username === username;
     // });
 
-    const your_rank = { no: 1, username: "player11", score: 96 }
+    // const your_rank = { no: 1, username: username, score: 96 }
 
 
   const onSearch = (event) => {
@@ -180,19 +218,19 @@ export default function UserRank() {
                 align="center"
                 style={{ top: 57, backgroundColor: "skyblue" }}
               >
-                YOU #{your_rank.no}
+                YOU #{yourRank.no}
               </TableCell>
               <TableCell
                 align="center"
                 style={{ top: 57, backgroundColor: "skyblue" }}
               >
-                {your_rank.username}
+                {yourRank.username}
               </TableCell>
               <TableCell
                 align="center"
                 style={{ top: 57, backgroundColor: "skyblue" }}
               >
-                {your_rank.score}
+                {yourRank.score}
               </TableCell>
             </TableRow>
           </TableHead>

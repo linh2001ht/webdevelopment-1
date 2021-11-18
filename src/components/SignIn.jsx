@@ -91,7 +91,7 @@ function SignIn() {
     return (
         <form className="sign-in-container">
             <div className="form-inner">
-                <div className="sign-in-title"> Obstacles Crossed </div>
+                <div className="sign-in-title-bar"> Obstacles Crossed </div>
                 <p className="cheering">WELCOME TO OUR WORLD</p>
                 <div className="logo-container">
                     <img className="logo" src={logo} alt="img"/>

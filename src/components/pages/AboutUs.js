@@ -21,6 +21,7 @@ import {
   Switch
 } from "@mui/material";
 import { AccountCircle, Settings, Logout } from "@mui/icons-material";
+import NavigationBar from "../navigationBar"
 class AboutUs extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,7 @@ class AboutUs extends React.Component {
       "Players will have the weapons and abilities to overcome obstacles. However, it can only be used once. Weapons can appear indefinitely. Weapons spawn randomly while running.",
     date: "2021-10-30",
     team: "Best Team Name",
-    age: "12",
+    age: "6",
     prevData: [
       "/images/game_play.png",
       "/images/shuriken.png",
@@ -102,95 +103,7 @@ class AboutUs extends React.Component {
     return (
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" style={{ background: "#2E3B55" ,height:"80px"}}>
-            <Toolbar>
-            <a onClick={() => {
-                        window.open("/", "_self");
-                        window.close();
-                    }}><i  class="fas fa-arrow-circle-left"></i></a>
-              <Typography variant="h1" component="div" sx={{ flexGrow: 1 }} style={{fontSize:"2rem",
-            width:"400px",color:"#dffffd" ,padding:"100px"}}>
-                About Us
-              </Typography>
-              <IconButton
-                size="large"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={this.handleMenu}
-                color="inherit"
-              >
-                <Avatar>A</Avatar>
-                <Typography m>
-                  {this.state.auth ? "Admin01" : "User01"}
-                </Typography>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={this.state.anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right"
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                open={Boolean(this.state.anchorEl)}
-                onClose={this.handleClose}
-                onClick={this.handleClose}
-              >
-                <MenuItem>
-                  <ListItemIcon>
-                    <AccountCircle fontSize="small" />
-                  </ListItemIcon>
-                  Profile
-                </MenuItem>
-                <MenuItem>
-                  <ListItemIcon>
-                    <Settings fontSize="small" />
-                  </ListItemIcon>
-                  Settings
-                </MenuItem>
-                <MenuItem>
-                  <ListItemIcon>
-                    <Logout fontSize="small" />
-                  </ListItemIcon>
-                  Logout
-                </MenuItem>
-              </Menu>
-            </Toolbar>
-          </AppBar>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={this.state.auth}
-                  onChange={this.handleChange}
-                  aria-label="mode"
-                />
-              }
-              label={this.state.auth ? "Admin" : "User"}
-            />
-            {this.state.auth &&
-              (this.state.edit ? (
-                <div>
-                  <Button variant="contained" onClick={this.handleSaveChange}>
-                    Save
-                  </Button>
-                  <Button variant="contained" onClick={this.changeEditMode}>
-                    Cancel
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  {" "}
-                  <Button variant="contained" onClick={this.changeEditMode}>
-                    Edit
-                  </Button>
-                </div>
-              ))}
-          </FormGroup>
+          <NavigationBar />
         </Box>
         <Container margin="normal">
           <Typography m variant="h4" style={{ textAlign: "center" }}>

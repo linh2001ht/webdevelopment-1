@@ -80,13 +80,15 @@ function RankAdmin({isAuth}) {
         const data = response.users
         if(isDone === false) {
             console.log("run")
+            let stt = 0;
             data.forEach((item, index) => {
-                if(item.role===0)
-                    rows.push(createData(index, item.username, item.score))
+                if(item.role===0){
+                  stt = stt + 1
+                  rows.push(createData(stt, item.username, item.score))
+                  }
             })
             isDone = true
             setRow(rows)
-            // return;
         } else {
             return;
         }
@@ -102,7 +104,7 @@ function RankAdmin({isAuth}) {
     const filteredRows = DefaultRows.filter((row) => {
       return row.name.toLowerCase().includes(str.toLowerCase());
     });
-    setRows(filteredRows);
+    setRow(filteredRows);
   };
 
   console.log("isAuth in rank : " + isAuth) //////////////////
