@@ -1,9 +1,7 @@
 .game {
     font-size: xx-large;
     text-align: right;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: 1200px;
     height: 600px;
     background-color: skyblue;
