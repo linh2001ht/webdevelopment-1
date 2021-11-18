@@ -88,11 +88,6 @@ function SignIn() {
         }
     }
  
-    // useEffect(() => {
-    //     localStorage.setItem("username", username)
-    //     const user = localStorage.getItem("username")
-    //     console.log("user" , user)
-    //   }, [username])
     return (
         <form className="sign-in-container">
             <div className="form-inner">
@@ -122,7 +117,7 @@ function SignIn() {
                 <button className="SubmitBtn" onClick= {handleLogin} >Login</button>
                 <br />
                 <div className="sign-up-btn">
-                    <a className="sign-up-btn"  href='#SignUp' >Sign Up</a><br />
+                    <Link className="sign-up-btn"  to="/signup" >Sign Up</Link><br />
                 </div>
                 <div className="reset-pwd-btn">
                     <a className="rs-btn" href='#' >Forgot password?</a>

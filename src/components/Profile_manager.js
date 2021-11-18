@@ -3,17 +3,17 @@ import { useHistory } from "react-router-dom";
 import "./Profile_manager.css";
 import { editUserService, getAllUser } from "../services/userService";
 import NavigationBar from "./navigationBar";
+import { getAllJSDocTags } from "typescript";
 
-const Appi = ({profile, state, setState, userID, setUserID, a}) => {
+const Appi = ({ profile, state, setState, userID, setUserID, a}) => {
     let history = useHistory();
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
     const [userProfile, setUserProfile ] = useState(profile)
     const [ arr, setArr ] = useState([])
-    var a = []
+    
     const handleClick = async () => {
-        a.push(1)
-        setArr(a)
+        
         let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
         console.log("update", update)
         setState([])
