@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "./Authentication/UserContext";
-import "./game.css";
+import "./Game.css";
 import { Link } from "react-router-dom";
 
 
