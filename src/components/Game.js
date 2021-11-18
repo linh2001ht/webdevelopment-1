@@ -319,7 +319,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 860
+            right: 830
           }}
         >
           {zeroPad(swords, 2)}
@@ -329,7 +329,7 @@ export default function Game() {
           style={{
             top: 5,
             position: "relative",
-            right: 795
+            right: 770
           }}
         >
           {zeroPad(shurikens, 2)}
@@ -339,7 +339,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 725
+            right: 710
           }}
         >
           {zeroPad(bombs, 2)}
@@ -349,7 +349,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 655
+            right: 645
           }}
         >
           {zeroPad(portals, 2)}
