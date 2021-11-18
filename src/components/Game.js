@@ -294,7 +294,7 @@ export default function Game() {
         setScore(score + 0.1);
       } else {
         if (score >= HScore) {
-          setHScore(score)
+          setHScore(Math.floor(score))
         }
       }
     }, 1000 / fps );
