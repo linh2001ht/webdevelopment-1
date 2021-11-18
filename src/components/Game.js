@@ -307,7 +307,7 @@ export default function Game() {
 
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", height: 100%, overflow: "hidden" }}>
     <div className="game">
       <div
         style={{
@@ -331,7 +331,7 @@ export default function Game() {
           style={{
             top: 5,
             position: "relative",
-            right: 770
+            right: 765
           }}
         >
           {zeroPad(shurikens, 2)}
@@ -341,7 +341,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 710
+            right: 705
           }}
         >
           {zeroPad(bombs, 2)}
@@ -351,7 +351,7 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 645
+            right: 640
           }}
         >
           {zeroPad(portals, 2)}
