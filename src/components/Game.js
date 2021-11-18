@@ -316,37 +316,37 @@ export default function Game() {
           style={{
             position: "relative",
             top: 5,
-            right: 830
+            right: 860
           }}
         >
           {zeroPad(swords, 2)}
         </span>
-        <span className="shuriken" style={{ left: 150 }} />
+        <span className="shurikens" style={{ left: 150 }} />
         <span
           style={{
             top: 5,
             position: "relative",
-            right: 770
+            right: 795
           }}
         >
           {zeroPad(shurikens, 2)}
         </span>
-        <span className="boom" style={{ left: 250 }} />
+        <span className="bombs" style={{ left: 250 }} />
         <span
           style={{
             position: "relative",
             top: 5,
-            right: 710
+            right: 725
           }}
         >
           {zeroPad(bombs, 2)}
         </span>
-        <span className="portal" style={{ left: 350 }} />
+        <span className="portals" style={{ left: 350 }} />
         <span
           style={{
             position: "relative",
             top: 5,
-            right: 645
+            right: 655
           }}
         >
           {zeroPad(portals, 2)}
