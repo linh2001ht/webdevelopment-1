@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, useMemo } from "react";
+import { Paper } from "@mui/material";
 import { UserContext } from "./Authentication/UserContext";
 import "./Game.css";
 import { Link } from "react-router-dom";
@@ -306,6 +307,7 @@ export default function Game() {
 
 
   return (
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
     <div className="game">
       <div
         style={{
@@ -471,5 +473,6 @@ export default function Game() {
         {portalOut && <div className="portalOut" />}
       </div>
     </div>
+    </Paper>
   );
 }
