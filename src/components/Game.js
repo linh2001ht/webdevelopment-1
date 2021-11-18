@@ -36,15 +36,6 @@ export default function Game() {
   const [HScore, setHScore] = useState(highScore);
   const [stoneX, setStoneX] = useState([]);
   const [itemX, setItemX] = useState(-30);
-  
-
-  useEffect(() => {
-    console.log("mesage from usesEfect")
-    if(score >= HScore) {
-      setHighScore(score)
-    }
-  }, [stoneX])
-
   const [giftX, setGiftX] = useState(-100);
   const [sword, setSword] = useState(false);
   const [shuriken, setShuriken] = useState([]);
