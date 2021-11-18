@@ -45,6 +45,7 @@ const DataTable = ({ state, setState, profile, setProfile, userID, setUserID}) =
         return <button 
                     className="detail-button" 
                     onClick={ async () => {
+                        
                         let res = await getAllUser(userId)
                         setUserID(userId)
                         console.log("userId", userId)

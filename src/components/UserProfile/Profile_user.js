@@ -4,9 +4,28 @@ import './Profile_user.css';
 import {getAllUser, editUserService} from "../../services/userService"
 import { useHistory } from "react-router-dom";
 import NavigationBar from "../navigationBar";
-
+import { Modal } from 'antd';
 var isGet = false
-
+function countDown() {
+    console.log("run in")
+    let secondsToGo = 3;
+    const modal = Modal.success({
+      title: 'Update succeed! Please login again!',
+      content: `This modal will be destroyed after ${secondsToGo} second.`,
+    });
+    const timer = setInterval(() => {
+      secondsToGo -= 1;
+      modal.update({
+        content: `This modal will be destroyed after ${secondsToGo} second.`,
+      });
+    }, 1000);
+    setTimeout(() => {
+        clearInterval(timer);
+        modal.destroy();
+        window.open("/", "_self");
+        window.close();
+    }, secondsToGo * 1000);
+  }
 const App_user = () => {
     const { username, userID, profile, setUsername, setProfile } = useContext(UserContext) 
     const [imgPreview, setImgPreview] = useState(null);
@@ -19,10 +38,8 @@ const App_user = () => {
     const handleClick = async () => {
         let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
         console.log("update", update)
+        countDown()
         
-        alert("Update succeed! Please login again!")
-        window.open("/", "_self");
-        window.close();
         
 
     }

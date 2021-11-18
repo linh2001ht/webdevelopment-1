@@ -4,7 +4,26 @@ import "./Profile_manager.css";
 import { editUserService, getAllUser } from "../services/userService";
 import NavigationBar from "./navigationBar";
 import { getAllJSDocTags } from "typescript";
+import { Modal } from 'antd';
 
+function countDown() {
+    console.log("run in")
+    let secondsToGo = 3;
+    const modal = Modal.success({
+      title: 'Update succeed!',
+      content: `This modal will be destroyed after ${secondsToGo} second.`,
+    });
+    const timer = setInterval(() => {
+      secondsToGo -= 1;
+      modal.update({
+        content: `This modal will be destroyed after ${secondsToGo} second.`,
+      });
+    }, 1000);
+    setTimeout(() => {
+        clearInterval(timer);
+        modal.destroy();
+    }, secondsToGo * 1000);
+  }
 const Appi = ({ profile, state, setState, userID, setUserID, a}) => {
     let history = useHistory();
     const [imgPreview, setImgPreview] = useState(null);
@@ -16,7 +35,10 @@ const Appi = ({ profile, state, setState, userID, setUserID, a}) => {
         
         let update = await editUserService({id: userID, username: userProfile.username, email: userProfile.email, gender: userProfile.gender, age: userProfile.age})
         console.log("update", update)
+        countDown()
         setState([])
+        
+        
     }
     useEffect(() => {
         setData()
