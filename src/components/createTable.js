@@ -16,77 +16,79 @@ import { getAllUser } from '../services/userService';
 import Appi from "./Profile_manager"
 import { render } from 'react-dom';
 
-const columns = [
-    { id: 'no', label: 'ID User', minWidth: 50 },
-    { id: 'username', label: 'Username', minWidth: 150, align: 'center' },
-    { id: 'email', label: 'Email', minWidth: 200, align: 'center' },
-    { id: 'detail', label: 'Detail', minWidth: 150, align: 'center' }
-]
-const createData = (no, username, email, detail) => {
-    return {no, username, email, detail };
-}
+// const columns = [
+//     { id: 'no', label: 'ID User', minWidth: 50 },
+//     { id: 'username', label: 'Username', minWidth: 150, align: 'center' },
+//     { id: 'email', label: 'Email', minWidth: 200, align: 'center' },
+//     { id: 'detail', label: 'Detail', minWidth: 150, align: 'center' }
+// ]
+// const createData = (no, username, email, detail) => {
+//     return {no, username, email, detail };
+// }
 
 
-var isDone = false
-const rows = []
+// var isDone = false
+// const rows = []
 
 
-const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) => {
+const DataTable = ({columns, data, state, setState, profile, setProfile, userID, setUserID}) => {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const { username, password } = useContext(UserContext);
-    const [ arr, setArr ] = useState([])
+    console.log("data", data)
+    // const [ arr, setArr ] = useState([])
     // var a = []
     let history = useHistory();
     
-    const [row, setRow] = useState([])
-    const DetailButton = ({userId}) => {
+    // const [row, setRow] = useState(data)
+    // console.log(row)
+    // const DetailButton = ({userId}) => {
         
-        let history = useHistory()
-        return <button 
-                    className="detail-button" 
-                    onClick={ async () => {
-                        let res = await getAllUser(userId)
-                        setUserID(userId)
-                        console.log("userId", userId)
-                        setProfile(res.users)
-                        console.log("res.users", res.users)
-                        setState([1])
-                        // console.log("state in create table = " + state)
-                        // a.push(1)
-                        // setArr(a)
-                    }}
-        >Detail</button>
+    //     let history = useHistory()
+    //     return <button 
+    //                 className="detail-button" 
+    //                 onClick={ async () => {
+    //                     let res = await getAllUser(userId)
+    //                     setUserID(userId)
+    //                     console.log("userId", userId)
+    //                     setProfile(res.users)
+    //                     console.log("res.users", res.users)
+    //                     setState([1])
+    //                     // console.log("state in create table = " + state)
+    //                     // a.push(1)
+    //                     // setArr(a)
+    //                 }}
+    //     >Detail</button>
         
-    }
+    // }
 
    
-    const getData = async () => {
-        let response = await getAllUser("ALL")
-        if(response && response.errCode === 0) {
-            const data = response.users
-            if(isDone === false) {
-                data.forEach( (item) => {
-                    if(item.role===0)
-                        rows.push(createData(item.id, item.username, item.email, <DetailButton userId={item.id} />))
-                })
-                isDone = true
-                setRow(rows)
-                console.log("get data")
-            } else {
-                return;
-            }
-        }
-    }
+    // const getData = async () => {
+    //     let response = await getAllUser("ALL")
+    //     if(response && response.errCode === 0) {
+    //         const data = response.users
+    //         if(isDone === false) {
+    //             data.forEach( (item) => {
+    //                 if(item.role===0)
+    //                     rows.push(createData(item.id, item.username, item.email, <DetailButton userId={item.id} />))
+    //             })
+    //             isDone = true
+    //             setRow(rows)
+    //             console.log("get data")
+    //         } else {
+    //             return;
+    //         }
+    //     }
+    // }
     // if(state === 'start') {
     //     console.log("state  = " + state)
     //     getData()
     // }
         
-    useEffect(() => {
-        getData()
-    }, [state])
+    // useEffect(() => {
+    //     getData()
+    // }, [state])
     
 
     // getData()
@@ -118,13 +120,13 @@ const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) =>
                     </TableHead>
                     
                     <TableBody>
-                        {rows
+                        {data
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
+                        .map((r) => {
                             return (
                             <TableRow hover role="checkbox" tabIndex={-1} >
                                 {columns.map((column) => {
-                                const value = row[column.id];
+                                const value = r[column.id];
                                 return (
                                     <TableCell key={column.id}
                                     align={column.align}
@@ -144,7 +146,7 @@ const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) =>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={rows.length}
+                count={data.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
