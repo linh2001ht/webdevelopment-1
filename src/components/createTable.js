@@ -13,8 +13,6 @@ import { UserContext } from './Authentication/UserContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllUser } from '../services/userService';
-import Appi from "./Profile_manager"
-import { render } from 'react-dom';
 
 const columns = [
     { id: 'no', label: 'ID User', minWidth: 50 },
@@ -27,8 +25,6 @@ const createData = (no, username, email, detail) => {
 }
 
 
-
-
 var isDone = false
 const rows = []
 
@@ -39,7 +35,7 @@ const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) =>
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const { username, password } = useContext(UserContext);
     const [ arr, setArr ] = useState([])
-    const a = []
+    // var a = []
     let history = useHistory();
     
     const [row, setRow] = useState([])
@@ -54,13 +50,16 @@ const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) =>
                         console.log("userId", userId)
                         setProfile(res.users)
                         console.log("res.users", res.users)
-                        setState("change-page")
-                        a.push(1)
-                        setArr(a)
+                        setState([1])
+                        // console.log("state in create table = " + state)
+                        // a.push(1)
+                        // setArr(a)
                     }}
         >Detail</button>
         
     }
+
+   
     const getData = async () => {
         let response = await getAllUser("ALL")
         if(response && response.errCode === 0) {
@@ -73,17 +72,19 @@ const DataTable = ({state, setState, profile, setProfile, userID, setUserID}) =>
                 isDone = true
                 setRow(rows)
                 console.log("get data")
-                // return;
             } else {
                 return;
             }
         }
     }
+    // if(state === 'start') {
+    //     console.log("state  = " + state)
+    //     getData()
+    // }
+        
     useEffect(() => {
-        console.log("run???")
         getData()
-    }, [arr])
-    
+    }, [state])
     
 
     // getData()

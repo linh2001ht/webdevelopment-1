@@ -7,7 +7,7 @@ import NavigationBar from "./navigationBar"
 
 function ManageUser() {
     const [ userID, setUserID ]  = useState(0)
-    const [ state, setState ] = useState('start')
+    const [ state, setState ] = useState([])
     const [ profile, setProfile ] = useState({
         username: "",
         email: "",
@@ -18,14 +18,14 @@ function ManageUser() {
 
     return (
         <div>
-        {state === 'start' && (
+        {state.length === 0 && (
             <>
                 <NavigationBar />
                 <p className="list-users">List of users</p>
                 <DataTable state={state} setState={setState} profile={profile} setProfile={setProfile} userID={userID} setUserID={setUserID}/>
             </>
         )}
-        {state === 'change-page' && <Appi profile={profile} setState={setState} userID={userID} setUserID={setUserID} />}
+        {state.length !== 0 && <Appi profile={profile} state={state} setState={setState} userID={userID} setUserID={setUserID} />}
 
 
         </div>
