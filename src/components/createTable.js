@@ -25,11 +25,9 @@ const createData = (no, username, email, detail) => {
     return {no, username, email, detail };
 }
 
-
 var isDone = false
-const rows = []
+var rows = []
 
-var isRun = false
 
 const DataTable = ({ state, setState, profile, setProfile, userID, setUserID}) => {
 
@@ -57,7 +55,6 @@ const DataTable = ({ state, setState, profile, setProfile, userID, setUserID}) =
         
     }
 
-   
     const getData = async () => {
         let response = await getAllUser("ALL")
         if(response && response.errCode === 0) {
@@ -80,7 +77,6 @@ const DataTable = ({ state, setState, profile, setProfile, userID, setUserID}) =
         getData()
     }, [state])
     
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
