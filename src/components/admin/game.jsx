@@ -263,7 +263,7 @@ export default function Game() {
         hitGP();
         setScore(score + 0.1);
       } else {
-        if (score >= HScore) setHScore(score);
+        if (score >= HScore) setHScore(Math.floor(score));
       }
     }, 1000 / fps );
 
