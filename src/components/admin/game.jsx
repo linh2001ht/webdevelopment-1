@@ -271,7 +271,7 @@ export default function Game() {
   }, [score, start, jump]);
 
   return (
-    <div style = {{height:"100vh"}}>
+    <div style = {{height:"100vh", overflow: "hidden"}}>
     <div className="game">
       <div
         style={{
