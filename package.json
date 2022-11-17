@@ -1,6 +1,9 @@
 {
   "name": "webdevelopment",
   "version": "0.1.0",
+  "engines": {
+    "node": "18.x"
+  }
   "description": "Created with CodeSandbox",
   "keywords": [],
   "main": "src/index.js",
